@@ -1,0 +1,16 @@
+{
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/include",
+        "${workspaceFolder}/src/core",
+        "${workspaceFolder}/src/server",
+        "${workspaceFolder}/src/client",
+        "${workspaceFolder}/src/protocol"
+    ],
+    "C_Cpp.intelliSenseEngineFallback": "enabled",
+    "C_Cpp.default.compilerPath": "/usr/bin/g++",
+    "editor.formatOnSave": true,
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools",
+        "editor.formatOnSave": true
+    }
+}
