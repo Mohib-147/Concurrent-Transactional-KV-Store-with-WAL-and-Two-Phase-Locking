@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <chrono>
+#include <algorithm>
 
 LockManager::LockManager() {}
 
@@ -9,17 +10,10 @@ LockManager::~LockManager() {}
 
 bool LockManager::isCompatible(LockMode mode1, LockMode mode2)
 {
-
     if (mode1 == LockMode::NONE || mode2 == LockMode::NONE)
-    {
         return true;
-    }
-
     if (mode1 == LockMode::SHARED && mode2 == LockMode::SHARED)
-    {
         return true;
-    }
-
     return false;
 }
 
@@ -37,120 +31,89 @@ bool LockManager::acquireLock(TxnId txn_id, const Key &key, LockMode mode, int t
     auto it = entry.holders.find(txn_id);
     if (it != entry.holders.end())
     {
+        if (entry.current_mode == LockMode::EXCLUSIVE || mode == LockMode::SHARED)
+            return true;
 
-        if (isCompatible(entry.current_mode, mode))
+        if (entry.holders.size() == 1)
         {
-            if (entry.current_mode == LockMode::NONE)
-            {
-                entry.current_mode = mode;
-            }
-            else if (mode == LockMode::EXCLUSIVE)
-            {
-                if (entry.holders.size() == 1)
-                {
-                    entry.current_mode = LockMode::EXCLUSIVE;
-                }
-                else
-                {
-                    goto add_to_wait_queue;
-                }
-            }
+            entry.current_mode = LockMode::EXCLUSIVE;
             return true;
         }
+        goto add_to_wait_queue;
     }
 
     if (isCompatible(entry.current_mode, mode) && entry.wait_queue.empty())
     {
         entry.holders.insert(txn_id);
         if (entry.current_mode == LockMode::NONE)
-        {
             entry.current_mode = mode;
-        }
-        else if (mode == LockMode::EXCLUSIVE && entry.holders.size() == 1)
-        {
+        else if (mode == LockMode::EXCLUSIVE)
             entry.current_mode = LockMode::EXCLUSIVE;
-        }
         return true;
     }
 
 add_to_wait_queue:
 {
+    auto granted_flag = std::make_shared<bool>(false);
+    auto deadlocked_flag = std::make_shared<bool>(false);
+
     LockWaiter waiter;
     waiter.txn_id = txn_id;
     waiter.requested_mode = mode;
-    waiter.granted = false;
-    waiter.deadlocked = false;
+    waiter.granted = granted_flag;
+    waiter.deadlocked = deadlocked_flag;
+    waiter.cv = std::make_shared<std::condition_variable>();
 
     entry.wait_queue.push_back(waiter);
-    auto waiter_index = entry.wait_queue.size() - 1;
+    auto cv = entry.wait_queue.back().cv; // capture before we release the lock
 
     auto timeout = std::chrono::milliseconds(timeout_ms);
-    auto result = entry.wait_queue[waiter_index].cv.wait_for(lock, timeout, [&]()
-                                                             { return entry.wait_queue[waiter_index].granted ||
-                                                                      entry.wait_queue[waiter_index].deadlocked; });
+    bool notified = cv->wait_for(lock, timeout, [&granted_flag, &deadlocked_flag]()
+                                 { return *granted_flag || *deadlocked_flag; });
 
-    if (entry.wait_queue[waiter_index].deadlocked)
+    if (*deadlocked_flag)
     {
-        if (waiter_index < entry.wait_queue.size() &&
-            entry.wait_queue[waiter_index].txn_id == txn_id)
-        {
-            entry.wait_queue.erase(entry.wait_queue.begin() + waiter_index);
-        }
+        auto &q = entry.wait_queue;
+        q.erase(std::remove_if(q.begin(), q.end(),
+                               [txn_id](const LockWaiter &w)
+                               { return w.txn_id == txn_id; }),
+                q.end());
         return false;
     }
 
-    if (!result)
+    if (!notified)
     {
-        if (waiter_index < entry.wait_queue.size() &&
-            entry.wait_queue[waiter_index].txn_id == txn_id)
-        {
-            entry.wait_queue.erase(entry.wait_queue.begin() + waiter_index);
-        }
+        auto &q = entry.wait_queue;
+        q.erase(std::remove_if(q.begin(), q.end(),
+                               [txn_id](const LockWaiter &w)
+                               { return w.txn_id == txn_id; }),
+                q.end());
         return false;
     }
 
-    if (entry.wait_queue[waiter_index].granted)
-    {
-        if (waiter_index < entry.wait_queue.size() &&
-            entry.wait_queue[waiter_index].txn_id == txn_id)
-        {
-            entry.wait_queue.erase(entry.wait_queue.begin() + waiter_index);
-        }
-        return true;
-    }
+    return true;
 }
-
-    return false;
 }
 
 void LockManager::releaseAllLocks(TxnId txn_id)
 {
     std::unique_lock<std::mutex> lock(lock_table_mutex_);
 
-    // Collect keys to process (can't modify map while iterating)
     std::vector<Key> keys_to_process;
     for (const auto &pair : lock_table_)
     {
-        const Key &key = pair.first;
-        const LockEntry &entry = pair.second;
-
-        // Check if this txn holds a lock on this key
-        if (entry.holders.find(txn_id) != entry.holders.end())
-        {
-            keys_to_process.push_back(key);
-        }
+        if (pair.second.holders.find(txn_id) != pair.second.holders.end())
+            keys_to_process.push_back(pair.first);
     }
 
     for (const Key &key : keys_to_process)
     {
         LockEntry &entry = lock_table_[key];
-
         entry.holders.erase(txn_id);
 
         if (entry.holders.empty())
         {
             entry.current_mode = LockMode::NONE;
-
             processWaiters(key);
         }
     }
@@ -162,9 +125,7 @@ void LockManager::releaseLock(TxnId txn_id, const Key &key)
 
     auto it = lock_table_.find(key);
     if (it == lock_table_.end())
-    {
         return;
-    }
 
     LockEntry &entry = it->second;
     entry.holders.erase(txn_id);
@@ -182,16 +143,11 @@ LockMode LockManager::hasLock(TxnId txn_id, const Key &key) const
 
     auto it = lock_table_.find(key);
     if (it == lock_table_.end())
-    {
         return LockMode::NONE;
-    }
 
     const LockEntry &entry = it->second;
-
     if (entry.holders.find(txn_id) != entry.holders.end())
-    {
         return entry.current_mode;
-    }
 
     return LockMode::NONE;
 }
@@ -200,9 +156,7 @@ void LockManager::processWaiters(const Key &key)
 {
     auto it = lock_table_.find(key);
     if (it == lock_table_.end())
-    {
         return;
-    }
 
     LockEntry &entry = it->second;
 
@@ -210,28 +164,20 @@ void LockManager::processWaiters(const Key &key)
     {
         LockWaiter &waiter = entry.wait_queue.front();
 
-        if (isCompatible(entry.current_mode, waiter.requested_mode))
-        {
-            entry.holders.insert(waiter.txn_id);
-
-            if (entry.current_mode == LockMode::NONE)
-            {
-                entry.current_mode = waiter.requested_mode;
-            }
-            else if (waiter.requested_mode == LockMode::EXCLUSIVE)
-            {
-                entry.current_mode = LockMode::EXCLUSIVE;
-            }
-
-            waiter.granted = true;
-            waiter.cv.notify_one();
-
-            entry.wait_queue.erase(entry.wait_queue.begin());
-        }
-        else
-        {
+        if (!isCompatible(entry.current_mode, waiter.requested_mode))
             break;
-        }
+
+        entry.holders.insert(waiter.txn_id);
+        if (entry.current_mode == LockMode::NONE)
+            entry.current_mode = waiter.requested_mode;
+        else if (waiter.requested_mode == LockMode::EXCLUSIVE)
+            entry.current_mode = LockMode::EXCLUSIVE;
+
+        *waiter.granted = true;
+        auto cv = waiter.cv;
+
+        entry.wait_queue.erase(entry.wait_queue.begin());
+        cv->notify_one();
     }
 }
 
@@ -257,18 +203,14 @@ std::string LockManager::dumpLockTable() const
         ss << "  Mode: " << lockModeToString(entry.current_mode) << "\n";
         ss << "  Holders: ";
         for (TxnId holder : entry.holders)
-        {
             ss << holder << " ";
-        }
         ss << "\n";
 
         if (!entry.wait_queue.empty())
         {
             ss << "  Waiters: ";
-            for (const auto &waiter : entry.wait_queue)
-            {
-                ss << "Txn" << waiter.txn_id << "(" << lockModeToString(waiter.requested_mode) << ") ";
-            }
+            for (const auto &w : entry.wait_queue)
+                ss << "Txn" << w.txn_id << "(" << lockModeToString(w.requested_mode) << ") ";
             ss << "\n";
         }
     }

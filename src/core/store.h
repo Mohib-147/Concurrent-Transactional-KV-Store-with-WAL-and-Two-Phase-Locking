@@ -27,6 +27,7 @@ public:
 
 private:
     std::map<Key, Value> data_;
+    mutable std::shared_mutex mutex_;
 };
 
 #endif

@@ -11,7 +11,7 @@
 
 class TransactionManager;
 
-class Server
+class Server : public std::enable_shared_from_this<Server>
 {
 public:
     explicit Server(int port);

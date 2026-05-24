@@ -8,6 +8,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Compiler flags for debugging and warnings
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -g -O0")
 
+# Generate compile_commands.json for IntelliSense
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # Include directories
 include_directories(include)
 
@@ -22,13 +25,14 @@ add_executable(kvdb-server
     src/server/server.cpp
     src/server/connection_handler.cpp
     src/core/lock_manager.cpp
-    src/core/transactional_manager.cpp
+    src/core/transaction_manager.cpp
     src/core/store.cpp
     src/protocol/parser.cpp
     src/protocol/protocol.cpp
 )
 
 target_link_libraries(kvdb-server PRIVATE Threads::Threads)
+target_include_directories(kvdb-server PRIVATE include)
 
 # ============================================================================
 # CLIENT EXECUTABLE
@@ -39,17 +43,34 @@ add_executable(kvdb-cli
 )
 
 target_link_libraries(kvdb-cli PRIVATE Threads::Threads)
+target_include_directories(kvdb-cli PRIVATE include)
 
 # ============================================================================
-# TESTS EXECUTABLE
+# TEST EXECUTABLES
+# Each test file has its own main() — build them as separate targets.
 # ============================================================================
-add_executable(test_kvdb
+add_executable(test_lock_manager
     tests/test_lock_manager.cpp
-    tests/test_transaction_manager.cpp
-    tests/test_concurrent_basic.cpp
     src/core/lock_manager.cpp
-    src/core/transactional_manager.cpp
     src/core/store.cpp
 )
+target_include_directories(test_lock_manager PRIVATE include src/core)
+target_link_libraries(test_lock_manager PRIVATE Threads::Threads)
 
-target_link_libraries(test_kvdb PRIVATE Threads::Threads)
+add_executable(test_transaction_manager
+    tests/test_transaction_manager.cpp
+    src/core/lock_manager.cpp
+    src/core/transaction_manager.cpp
+    src/core/store.cpp
+)
+target_include_directories(test_transaction_manager PRIVATE include src/core)
+target_link_libraries(test_transaction_manager PRIVATE Threads::Threads)
+
+add_executable(test_concurrent_basic
+    tests/test_concurrent_basic.cpp
+    src/core/lock_manager.cpp
+    src/core/transaction_manager.cpp
+    src/core/store.cpp
+)
+target_include_directories(test_concurrent_basic PRIVATE include src/core)
+target_link_libraries(test_concurrent_basic PRIVATE Threads::Threads)

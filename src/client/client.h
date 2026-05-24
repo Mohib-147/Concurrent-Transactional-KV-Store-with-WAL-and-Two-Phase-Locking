@@ -25,8 +25,6 @@ private:
     bool connect();
 
     std::string readLine();
-
-    void writeLine(const std::string &line);
 };
 
 #endif // CLIENT_H
