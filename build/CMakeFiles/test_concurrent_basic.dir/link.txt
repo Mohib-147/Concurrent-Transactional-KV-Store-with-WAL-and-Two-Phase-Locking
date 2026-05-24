@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wextra -g -O0 CMakeFiles/test_concurrent_basic.dir/tests/test_concurrent_basic.cpp.o CMakeFiles/test_concurrent_basic.dir/src/core/lock_manager.cpp.o CMakeFiles/test_concurrent_basic.dir/src/core/transaction_manager.cpp.o CMakeFiles/test_concurrent_basic.dir/src/core/store.cpp.o -o test_concurrent_basic 
