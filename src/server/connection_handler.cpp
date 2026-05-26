@@ -14,6 +14,7 @@ ConnectionHandler::ConnectionHandler(int client_socket, SessionId session_id,
     : client_socket_(client_socket), session_id_(session_id), server_(server)
 {
     txn_manager_ = server_->getTransactionManager(session_id);
+    inbuf_.clear();
 }
 
 ConnectionHandler::~ConnectionHandler()
@@ -23,25 +24,22 @@ ConnectionHandler::~ConnectionHandler()
 
 void ConnectionHandler::run()
 {
-    // Send greeting
     std::string greeting = Protocol::getGreeting(session_id_);
     writeLine(greeting);
 
     std::cout << "[server] client connected: session " << session_id_ << std::endl;
 
-    // Main command loop
-    while (true)
+    std::string cmd;
+    while (getNextCommandLine(cmd))
     {
-        std::string line = readLine();
+        if (cmd.empty())
+            continue;
 
-        if (line.empty())
-        {
-            // Client disconnected
+        std::string response = handleCommand(cmd);
+
+        if (response.empty())
             break;
-        }
 
-        // Handle command
-        std::string response = handleCommand(line);
         writeLine(response);
     }
 
@@ -49,36 +47,36 @@ void ConnectionHandler::run()
     closeConnection();
 }
 
-std::string ConnectionHandler::readLine()
+bool ConnectionHandler::getNextCommandLine(std::string &cmd_line)
 {
-    std::string line;
-    char buffer[1024];
-    ssize_t bytes_read = recv(client_socket_, buffer, sizeof(buffer) - 1, 0);
+    cmd_line.clear();
 
-    if (bytes_read < 0)
+    while (true)
     {
-        return ""; // Error
-    }
+        auto newline_pos = inbuf_.find('\n');
+        if (newline_pos != std::string::npos)
+        {
+            cmd_line = inbuf_.substr(0, newline_pos);
+            inbuf_ = inbuf_.substr(newline_pos + 1);
 
-    if (bytes_read == 0)
-    {
-        return ""; // Connection closed
-    }
+            if (!cmd_line.empty() && cmd_line.back() == '\r')
+                cmd_line.pop_back();
 
-    buffer[bytes_read] = '\0';
-    line = std::string(buffer);
+            return true;
+        }
 
-    // Remove newline if present
-    if (!line.empty() && line.back() == '\n')
-    {
-        line.pop_back();
+        char buf[1024];
+        ssize_t n = recv(client_socket_, buf, sizeof(buf), 0);
+        if (n == 0)
+        {
+            return false;
+        }
+        else if (n < 0)
+        {
+            return false;
+        }
+        inbuf_.append(buf, n);
     }
-    if (!line.empty() && line.back() == '\r')
-    {
-        line.pop_back();
-    }
-
-    return line;
 }
 
 void ConnectionHandler::writeLine(const std::string &response)
@@ -229,6 +227,22 @@ std::string ConnectionHandler::handleCommand(const std::string &cmd_line)
             txn_manager_->abort();
         }
         return ""; // Signal connection close
+    }
+    else if (cmd.name == "CHECKPOINT")
+    {
+        std::cout << "[server] CHECKPOINT requested (session "
+                  << session_id_ << ")" << std::endl;
+
+        bool ok = server_->handleCheckpoint();
+
+        if (ok)
+        {
+            return "CHECKPOINT OK";
+        }
+        else
+        {
+            return "ERROR: checkpoint refused (active transactions exist)";
+        }
     }
 
     else

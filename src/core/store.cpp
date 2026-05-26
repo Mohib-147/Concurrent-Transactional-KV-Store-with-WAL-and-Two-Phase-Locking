@@ -1,5 +1,4 @@
 #include "store.h"
-#include <iostream>
 
 Store::Store() {}
 
@@ -7,7 +6,6 @@ Store::~Store() {}
 
 bool Store::get(const Key &key, Value &out_value) const
 {
-    std::shared_lock<std::shared_mutex> lock(mutex_);
     auto it = data_.find(key);
     if (it != data_.end())
     {
@@ -19,41 +17,59 @@ bool Store::get(const Key &key, Value &out_value) const
 
 void Store::put(const Key &key, const Value &value)
 {
-    std::unique_lock<std::shared_mutex> lock(mutex_);
     data_[key] = value;
 }
 
 bool Store::delete_key(const Key &key)
 {
-    std::unique_lock<std::shared_mutex> lock(mutex_);
     return data_.erase(key) > 0;
 }
 
 bool Store::exists(const Key &key) const
 {
-    std::shared_lock<std::shared_mutex> lock(mutex_);
     return data_.find(key) != data_.end();
 }
 
 std::vector<Key> Store::getAllKeys() const
 {
-    std::shared_lock<std::shared_mutex> lock(mutex_);
     std::vector<Key> keys;
+    keys.reserve(data_.size());
+
     for (const auto &pair : data_)
     {
         keys.push_back(pair.first);
     }
+
     return keys;
 }
 
 size_t Store::size() const
 {
-    std::shared_lock<std::shared_mutex> lock(mutex_);
     return data_.size();
 }
 
 void Store::clear()
 {
-    std::unique_lock<std::shared_mutex> lock(mutex_);
     data_.clear();
+}
+
+void Store::applyBatch(const std::vector<WriteOp> &ops)
+{
+    for (const auto &op : ops)
+    {
+        if (op.is_delete)
+        {
+            data_.erase(op.key);
+        }
+        else
+        {
+            data_[op.key] = op.value;
+        }
+    }
+}
+
+std::unordered_map<Key, Value> Store::getAllEntries() const
+{
+    std::lock_guard<std::mutex> lock(mutex_);
+    return data_;
 }
