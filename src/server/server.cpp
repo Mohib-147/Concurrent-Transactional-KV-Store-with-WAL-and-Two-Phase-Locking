@@ -30,9 +30,26 @@ void Server::start()
 {
     std::cout << "[server] starting up..." << std::endl;
 
+    // =========================
+    // 1. RECOVERY PHASE (MUST RUN FIRST)
+    // =========================
+    try
+    {
+        RecoveryManager recovery(store_, "wal/wal.log", "data/data.db");
+        recovery.recover();
+        std::cout << "[server] recovery completed successfully\n";
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "[server] recovery failed: " << e.what() << std::endl;
+        return;
+    }
+
     running_ = true;
 
-    // Create server socket
+    // =========================
+    // 2. SOCKET SETUP
+    // =========================
     server_socket_ = socket(AF_INET, SOCK_STREAM, 0);
     if (server_socket_ < 0)
     {
@@ -40,7 +57,6 @@ void Server::start()
         return;
     }
 
-    // Set socket options (allow reuse of address)
     int opt = 1;
     if (setsockopt(server_socket_, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) < 0)
     {
@@ -49,7 +65,6 @@ void Server::start()
         return;
     }
 
-    // Bind to port
     sockaddr_in server_addr;
     std::memset(&server_addr, 0, sizeof(server_addr));
     server_addr.sin_family = AF_INET;
@@ -63,13 +78,16 @@ void Server::start()
         return;
     }
 
-    // Listen for connections
     if (listen(server_socket_, 5) < 0)
     {
         std::cerr << "[server] ERROR: Failed to listen" << std::endl;
         close(server_socket_);
         return;
     }
+
+    // =========================
+    // 3. START GROUP COMMIT
+    // =========================
     if (group_commit_manager_)
     {
         group_commit_manager_->start();
@@ -77,8 +95,8 @@ void Server::start()
     }
 
     std::cout << "[server] listening on port " << port_ << std::endl;
-    std::cout << "[server] lock manager initialized" << std::endl;
     std::cout << "[server] ready to accept connections" << std::endl;
+
     acceptLoop();
 }
 
@@ -160,9 +178,9 @@ TxnId Server::allocateTxnId()
 
 bool Server::hasActiveTransactions() const
 {
-    std::lock_guard<std::mutex> lock(clients_mutex_);
+    std::lock_guard<std::mutex> lock(txn_managers_mutex_);
 
-    for (const auto &pair : transaction_managers_)
+    for (const auto &pair : txn_managers_)
     {
         if (pair.second && pair.second->isInTransaction())
         {
@@ -181,4 +199,24 @@ void Server::initAfterConstruction()
         shared_from_this(),
         "data/data.db",
         "wal/wal.log");
+}
+
+bool Server::handleCheckpoint()
+{
+    // 1. Must have checkpoint subsystem
+    if (!checkpoint_manager_)
+    {
+        return false;
+    }
+
+    // 2. Safety rule from manual:
+    // Refuse checkpoint if ANY transaction is active
+    if (hasActiveTransactions())
+    {
+        return false;
+    }
+
+    bool ok = checkpoint_manager_->createCheckpoint();
+
+    return ok;
 }

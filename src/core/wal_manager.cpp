@@ -1,9 +1,8 @@
 #include "wal_manager.h"
-#include <cstring>
-#include <cstdint>
-#include <iostream>
 #include <fcntl.h>
 #include <unistd.h>
+#include <cstring>
+#include <iostream>
 
 WALManager::WALManager(const std::string &file_path)
     : file_path_(file_path)
@@ -16,6 +15,30 @@ WALManager::~WALManager()
     if (log_file_.is_open())
         log_file_.close();
 }
+
+// ------------------------- helpers -------------------------
+
+static void append_u64(std::string &b, uint64_t v)
+{
+    for (int i = 0; i < 8; i++)
+        b.push_back(static_cast<char>((v >> (8 * i)) & 0xFF));
+}
+
+static void append_u32(std::string &b, uint32_t v)
+{
+    for (int i = 0; i < 4; i++)
+        b.push_back(static_cast<char>((v >> (8 * i)) & 0xFF));
+}
+
+static void append_str(std::string &b, const std::string &s)
+{
+    uint16_t len = static_cast<uint16_t>(s.size());
+    b.push_back(static_cast<char>(len & 0xFF));
+    b.push_back(static_cast<char>((len >> 8) & 0xFF));
+    b.append(s);
+}
+
+// ------------------------- API -------------------------
 
 uint64_t WALManager::logBegin(TxnId txn_id)
 {
@@ -77,13 +100,14 @@ uint64_t WALManager::logAbort(TxnId txn_id)
     return lsn;
 }
 
+// ------------------------- buffer -------------------------
+
 std::vector<std::string> WALManager::fetchAndClearBuffer()
 {
     std::lock_guard<std::mutex> lock(mtx_);
 
     std::vector<std::string> out;
     out.swap(buffer_);
-
     return out;
 }
 
@@ -95,10 +119,19 @@ void WALManager::writeToDisk(const std::vector<std::string> &records)
     for (const auto &rec : records)
     {
         log_file_.write(rec.data(), rec.size());
+
+        if (rec.size() >= 12)
+        {
+            uint64_t lsn;
+            std::memcpy(&lsn, rec.data() + 4, sizeof(uint64_t));
+            updateFlushedLSN(lsn);
+        }
     }
 
     log_file_.flush();
 }
+
+// ------------------------- serialization -------------------------
 
 std::string WALManager::serializeRecord(uint64_t lsn,
                                         TxnId txn_id,
@@ -107,37 +140,29 @@ std::string WALManager::serializeRecord(uint64_t lsn,
                                         const Value &value)
 {
     std::string body;
-    body.reserve(64 + key.size() + value.size());
 
-    auto append_u64 = [&](uint64_t v)
-    {
-        for (int i = 0; i < 8; i++)
-            body.push_back(static_cast<char>((v >> (i * 8)) & 0xFF));
-    };
-
-    auto append_u32 = [&](uint32_t v)
-    {
-        for (int i = 0; i < 4; i++)
-            body.push_back(static_cast<char>((v >> (i * 8)) & 0xFF));
-    };
-
-    auto append_str = [&](const std::string &s)
-    {
-        uint16_t len = static_cast<uint16_t>(s.size());
-        body.push_back(static_cast<char>(len & 0xFF));
-        body.push_back(static_cast<char>((len >> 8) & 0xFF));
-        body.append(s);
-    };
-
-    // HEADER
-    append_u64(lsn);
-    append_u32(static_cast<uint32_t>(txn_id));
+    // header (WITHOUT CRC)
+    append_u64(body, lsn);
+    append_u32(body, txn_id);
     body.push_back(static_cast<char>(type));
 
-    // PAYLOAD
-    append_str(key);
-    append_str(value);
+    // payload rules (STRICT MANUAL)
 
+    if (type == RecordType::PUT)
+    {
+        append_str(body, key);
+        append_str(body, value);
+    }
+    else if (type == RecordType::DELETE)
+    {
+        append_str(body, key);
+    }
+    else
+    {
+        // BEGIN / COMMIT / ABORT → NO PAYLOAD
+    }
+
+    // CRC over everything after crc field
     uint32_t crc = crc32(body);
 
     std::string final;
@@ -152,6 +177,8 @@ std::string WALManager::serializeRecord(uint64_t lsn,
 
     return final;
 }
+
+// ------------------------- CRC -------------------------
 
 uint32_t WALManager::crc32(const std::string &data)
 {
@@ -173,6 +200,18 @@ uint32_t WALManager::crc32(const std::string &data)
     return ~crc;
 }
 
+// ------------------------- fsync -------------------------
+
+void WALManager::fsync()
+{
+    int fd = ::open(file_path_.c_str(), O_RDWR);
+    if (fd >= 0)
+    {
+        ::fsync(fd);
+        ::close(fd);
+    }
+}
+
 uint64_t WALManager::getFlushedLSN() const
 {
     std::lock_guard<std::mutex> lock(mtx_);
@@ -184,14 +223,4 @@ void WALManager::updateFlushedLSN(uint64_t lsn)
     std::lock_guard<std::mutex> lock(mtx_);
     if (lsn > flushed_lsn_)
         flushed_lsn_ = lsn;
-}
-
-void WALManager::fsync()
-{
-    int fd = ::open(file_path_.c_str(), O_RDWR);
-    if (fd >= 0)
-    {
-        ::fsync(fd);
-        ::close(fd);
-    }
 }

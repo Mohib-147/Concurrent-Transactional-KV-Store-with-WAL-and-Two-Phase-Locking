@@ -3,16 +3,19 @@
 
 #include "kvdb.h"
 #include "store.h"
-#include <vector>
-#include <unordered_map>
-#include <cstdint>
+
 #include <memory>
+#include <string>
+#include <unordered_map>
+#include <vector>
+#include <cstdint>
 
 class RecoveryManager
 {
 public:
-    explicit RecoveryManager(std::shared_ptr<Store> store,
-                             const std::string &wal_file);
+    RecoveryManager(std::shared_ptr<Store> store,
+                    const std::string &data_file,
+                    const std::string &wal_file);
 
     void recover();
 
@@ -33,6 +36,7 @@ private:
             PUT,
             DELETE
         } type;
+
         Key key;
         Value value;
     };
@@ -44,14 +48,21 @@ private:
         uint64_t commit_lsn = 0;
     };
 
+private:
     std::shared_ptr<Store> store_;
+
+    std::string data_file_;
     std::string wal_file_;
 
-    uint32_t crc32(const std::string &data);
-    bool verifyCRC(const std::string &record);
+    uint64_t checkpoint_lsn_ = 0;
 
-    uint64_t readU64(const char *data);
-    uint32_t readU32(const char *data);
+private:
+    void loadSnapshot();
+
+    uint32_t crc32(const std::string &data);
+
+    uint64_t readU64(const char *p);
+    uint32_t readU32(const char *p);
 };
 
 #endif
