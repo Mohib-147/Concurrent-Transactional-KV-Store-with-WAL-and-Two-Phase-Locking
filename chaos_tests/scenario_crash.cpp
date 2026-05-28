@@ -1,30 +1,26 @@
 #include "client.h"
+#include "reference_model.h"
 
 #include <thread>
 #include <vector>
-#include <atomic>
-#include <random>
 #include <iostream>
+#include <random>
 #include <mutex>
 #include <unordered_map>
+#include <atomic>
 #include <chrono>
 
 // ---------------- CONFIG ----------------
 
 static const int NUM_CLIENTS = 8;
 static const int TXNS_PER_CLIENT = 500;
+static const int NUM_KEYS = 10;
 static const std::string KEY_PREFIX = "k";
 
-// ---------------- GLOBAL COMMIT LOG ----------------
-
-struct CommitRecord
-{
-    std::string key;
-    std::string value;
-};
+// ---------------- GLOBAL STATE ----------------
 
 static std::mutex log_mutex;
-static std::vector<CommitRecord> committed_transactions;
+static ReferenceModel reference;
 
 // ---------------- WORKER ----------------
 
@@ -34,7 +30,7 @@ void worker(int id, std::atomic<bool> &running)
 
     std::mt19937 rng(id * 999 + 42);
     std::uniform_int_distribution<int> val_dist(1, 100000);
-    std::uniform_int_distribution<int> key_dist(0, 9);
+    std::uniform_int_distribution<int> key_dist(0, NUM_KEYS - 1);
 
     for (int i = 0; i < TXNS_PER_CLIENT; i++)
     {
@@ -51,8 +47,7 @@ void worker(int id, std::atomic<bool> &running)
             std::string key = KEY_PREFIX + std::to_string(k);
             std::string value = std::to_string(val_dist(rng));
 
-            std::string putResp = client.put(key, value);
-            if (putResp.find("ERROR") != std::string::npos)
+            if (client.put(key, value).find("ERROR") != std::string::npos)
             {
                 client.abort();
                 continue;
@@ -60,11 +55,17 @@ void worker(int id, std::atomic<bool> &running)
 
             std::string commitResp = client.commit();
 
-            // ONLY commit success matters
             if (commitResp.find("ERROR") == std::string::npos)
             {
                 std::lock_guard<std::mutex> lock(log_mutex);
-                committed_transactions.push_back({key, value});
+
+                // assign txn id locally (just sequential log index)
+                static std::atomic<uint64_t> commit_order{0};
+                uint64_t order = ++commit_order;
+
+                reference.beginTxn(order);
+                reference.addPut(order, key, value);
+                reference.commitTxn(order, order);
             }
 
             break;
@@ -72,7 +73,7 @@ void worker(int id, std::atomic<bool> &running)
     }
 }
 
-// ---------------- FETCH REAL STATE ----------------
+// ---------------- FETCH REAL DB ----------------
 
 std::unordered_map<std::string, std::string> fetchDB()
 {
@@ -80,7 +81,7 @@ std::unordered_map<std::string, std::string> fetchDB()
 
     std::unordered_map<std::string, std::string> db;
 
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < NUM_KEYS; i++)
     {
         std::string key = KEY_PREFIX + std::to_string(i);
 
@@ -95,58 +96,34 @@ std::unordered_map<std::string, std::string> fetchDB()
     return db;
 }
 
-// ---------------- VERIFICATION ----------------
+// ---------------- VERIFY ----------------
 
-bool verifyCrash()
+bool verifyScenarioCrash()
 {
     std::cout << "[scenario 5] verifying crash recovery...\n";
 
-    auto db = fetchDB();
+    // 1. replay reference model
+    reference.replayCommitted();
+    auto expected = reference.state();
 
-    std::unordered_map<std::string, std::vector<std::string>> expected_values;
-
-    {
-        std::lock_guard<std::mutex> lock(log_mutex);
-
-        for (auto &r : committed_transactions)
-        {
-            expected_values[r.key].push_back(r.value);
-        }
-    }
+    // 2. fetch real DB
+    auto actual = fetchDB();
 
     bool ok = true;
 
-    // Check:
-    // final value must be one of committed writes per key
-    for (auto &kv : db)
+    // 3. compare full state
+    for (int i = 0; i < NUM_KEYS; i++)
     {
-        const std::string &key = kv.first;
-        const std::string &actual = kv.second;
+        std::string key = KEY_PREFIX + std::to_string(i);
 
-        auto &valid_vals = expected_values[key];
+        std::string exp = expected.count(key) ? expected.at(key) : "";
+        std::string act = actual.count(key) ? actual.at(key) : "";
 
-        if (valid_vals.empty())
+        if (exp != act)
         {
-            std::cout << "[FAIL] no committed writes for " << key << "\n";
-            ok = false;
-            continue;
-        }
-
-        bool found = false;
-
-        for (auto &v : valid_vals)
-        {
-            if (v == actual)
-            {
-                found = true;
-                break;
-            }
-        }
-
-        if (!found)
-        {
-            std::cout << "[FAIL] key=" << key
-                      << " unexpected value=" << actual << "\n";
+            std::cout << "[FAIL] " << key
+                      << " expected=" << exp
+                      << " actual=" << act << "\n";
             ok = false;
         }
     }
@@ -159,35 +136,31 @@ bool verifyCrash()
     return ok;
 }
 
-// ---------------- SCENARIO RUNNER ----------------
+// ---------------- SCENARIO RUN ----------------
 
 bool runScenarioCrash()
 {
     std::cout << "[scenario 5] starting crash-under-load test...\n";
 
     std::atomic<bool> running(true);
-
     std::vector<std::thread> threads;
 
-    // 8 clients
     for (int i = 0; i < NUM_CLIENTS; i++)
         threads.emplace_back(worker, i, std::ref(running));
 
-    // let system run for 2 seconds
     std::this_thread::sleep_for(std::chrono::seconds(2));
 
-    std::cout << "[scenario 5] sending CRASH command...\n";
+    std::cout << "[scenario 5] sending CRASH...\n";
 
     Client crashClient("127.0.0.1", 7000);
     crashClient.sendCommand("CRASH");
 
-    // stop workers
     running.store(false);
 
     for (auto &t : threads)
         t.join();
 
-    std::cout << "[scenario 5] server crashed, now restart manually and rerun test\n";
+    std::cout << "[scenario 5] server crashed. restart server then run VERIFY.\n";
 
     return true;
 }

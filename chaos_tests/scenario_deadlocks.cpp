@@ -1,4 +1,5 @@
 #include "client.h"
+#include "reference_model.h"
 
 #include <thread>
 #include <vector>
@@ -9,31 +10,23 @@
 #include <atomic>
 #include <chrono>
 
+// ---------------- CONFIG ----------------
+
 static const int NUM_CLIENTS = 16;
 static const int NUM_KEYS = 20;
 static const int TEST_DURATION_SEC = 5;
-
-// 2x deadlock timeout (given 3000ms in lock manager)
 static const int DEADLOCK_TIMEOUT_MS = 8000;
 
-static std::mutex log_mutex;
+// ---------------- REFERENCE MODEL ----------------
 
-// ---------------- committed transaction log ----------------
+static ReferenceModel reference;
+static std::mutex ref_mutex;
 
-struct OpRecord
-{
-    std::string k1, k2, k3;
-    int order_id;
-};
-
-static std::vector<OpRecord> global_log;
-static std::atomic<int> global_order_counter(0);
-
-// ---------------- worker ----------------
+// ---------------- WORKER ----------------
 
 void worker(int id, std::atomic<bool> &running)
 {
-    Client client("127.0.0.1", 5000);
+    Client client("127.0.0.1", 7000);
 
     std::mt19937 rng(id * 991 + 123);
     std::uniform_int_distribution<int> key_dist(0, NUM_KEYS - 1);
@@ -80,60 +73,38 @@ void worker(int id, std::atomic<bool> &running)
             if (commitResp.find("committed") != std::string::npos)
             {
                 committed = true;
-                break;
+
+                // ---------------- record in reference model ----------------
+                std::lock_guard<std::mutex> lock(ref_mutex);
+
+                static std::atomic<uint64_t> commit_order{0};
+                uint64_t order = ++commit_order;
+
+                reference.beginTxn(order);
+                reference.addPut(order, k3, std::to_string(x + y));
+                reference.commitTxn(order, order);
             }
+
+            break;
         }
 
         auto end = std::chrono::steady_clock::now();
 
         int duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
 
-        // ---------------- timeout violation check ----------------
         if (duration > DEADLOCK_TIMEOUT_MS * 2)
         {
             std::cout << "[FAIL] txn blocked too long: "
                       << duration << " ms\n";
         }
-
-        // ---------------- log committed txn ----------------
-        if (committed)
-        {
-            std::lock_guard<std::mutex> lock(log_mutex);
-
-            global_log.push_back({k1, k2, k3,
-                                  global_order_counter++});
-        }
     }
 }
 
-// ---------------- reference model (serial order replay) ----------------
-
-static std::unordered_map<std::string, int> runReferenceModel()
-{
-    std::unordered_map<std::string, int> db;
-
-    // replay in commit order
-    std::sort(global_log.begin(), global_log.end(),
-              [](const OpRecord &a, const OpRecord &b)
-              {
-                  return a.order_id < b.order_id;
-              });
-
-    for (auto &op : global_log)
-    {
-        int v1 = db[op.k1];
-        int v2 = db[op.k2];
-        db[op.k3] = v1 + v2;
-    }
-
-    return db;
-}
-
-// ---------------- snapshot ----------------
+// ---------------- FETCH REAL STATE ----------------
 
 static std::unordered_map<std::string, int> getRealState()
 {
-    Client c("127.0.0.1", 5000);
+    Client c("127.0.0.1", 7000);
 
     std::unordered_map<std::string, int> db;
 
@@ -151,14 +122,14 @@ static std::unordered_map<std::string, int> getRealState()
     return db;
 }
 
-// ---------------- scenario runner ----------------
+// ---------------- SCENARIO ----------------
 
 bool runScenarioDeadlockStorm()
 {
     std::cout << "[scenario 6] deadlock storm test starting...\n";
 
     // init DB
-    Client init("127.0.0.1", 5000);
+    Client init("127.0.0.1", 7000);
 
     init.begin();
     for (int i = 0; i < NUM_KEYS; i++)
@@ -177,10 +148,11 @@ bool runScenarioDeadlockStorm()
     for (auto &t : threads)
         t.join();
 
-    // ---------------- correctness check ----------------
+    // ---------------- VALIDATION ----------------
 
+    reference.replayCommitted();
+    auto expected = reference.state();
     auto actual = getRealState();
-    auto reference = runReferenceModel();
 
     bool ok = true;
 
@@ -188,11 +160,14 @@ bool runScenarioDeadlockStorm()
     {
         std::string k = "k" + std::to_string(i);
 
-        if (actual[k] != reference[k])
+        std::string exp = expected.count(k) ? expected[k] : "0";
+        std::string act = actual.count(k) ? std::to_string(actual[k]) : "0";
+
+        if (exp != act)
         {
             std::cout << "[FAIL] " << k
-                      << " ref=" << reference[k]
-                      << " actual=" << actual[k] << "\n";
+                      << " expected=" << exp
+                      << " actual=" << act << "\n";
             ok = false;
         }
     }

@@ -1,26 +1,20 @@
 #include "client.h"
+#include "reference_model.h"
 
 #include <thread>
 #include <vector>
 #include <iostream>
 #include <random>
 #include <mutex>
-#include <unordered_map>
 #include <atomic>
 
 static const int NUM_CLIENTS = 4;
 static const int NUM_KEYS = 10;
 static const int TXNS_PER_CLIENT = 500;
 
-static std::mutex log_mutex;
-
-struct OpRecord
-{
-    std::vector<std::string> keys_read;
-    std::string key_written;
-};
-
-static std::vector<OpRecord> global_log;
+static std::mutex model_mutex;
+static ReferenceModel ref;
+static std::atomic<uint64_t> commit_counter{0};
 
 // ---------------- worker ----------------
 
@@ -39,16 +33,24 @@ void worker(int id)
             if (resp.find("ERROR") != std::string::npos)
                 continue;
 
+            TxnId txn_id = id * 100000 + i; // unique txn id
+
+            ref.beginTxn(txn_id);
+
             int k1 = key_dist(rng);
             int k2 = key_dist(rng);
             int k3 = key_dist(rng);
 
             std::string v1, v2;
 
-            if (client.get("k" + std::to_string(k1), v1).find("ERROR") != std::string::npos ||
-                client.get("k" + std::to_string(k2), v2).find("ERROR") != std::string::npos)
+            std::string r1 = client.get("k" + std::to_string(k1), v1);
+            std::string r2 = client.get("k" + std::to_string(k2), v2);
+
+            if (r1.find("ERROR") != std::string::npos ||
+                r2.find("ERROR") != std::string::npos)
             {
                 client.abort();
+                ref.abortTxn(txn_id);
                 continue;
             }
 
@@ -57,50 +59,34 @@ void worker(int id)
 
             int sum = a + b;
 
-            if (client.put("k" + std::to_string(k3), std::to_string(sum))
-                    .find("ERROR") != std::string::npos)
+            std::string wkey = "k" + std::to_string(k3);
+            std::string wval = std::to_string(sum);
+
+            std::string p = client.put(wkey, wval);
+
+            if (p.find("ERROR") != std::string::npos)
             {
                 client.abort();
+                ref.abortTxn(txn_id);
                 continue;
             }
+
+            ref.addPut(txn_id, wkey, wval);
 
             std::string commit_resp = client.commit();
 
             if (commit_resp.find("ERROR") != std::string::npos)
             {
-                continue; // retry txn
+                ref.abortTxn(txn_id);
+                continue;
             }
 
-            {
-                std::lock_guard<std::mutex> lock(log_mutex);
-                global_log.push_back({{"k" + std::to_string(k1), "k" + std::to_string(k2)},
-                                      "k" + std::to_string(k3)});
-            }
+            uint64_t order = commit_counter.fetch_add(1);
+            ref.commitTxn(txn_id, order);
 
             break;
         }
     }
-}
-
-// ---------------- reference model ----------------
-
-static std::unordered_map<std::string, int> runReferenceModel()
-{
-    std::unordered_map<std::string, int> db;
-
-    for (auto &op : global_log)
-    {
-        std::string a = op.keys_read[0];
-        std::string b = op.keys_read[1];
-        std::string c = op.key_written;
-
-        int v1 = db[a];
-        int v2 = db[b];
-
-        db[c] = v1 + v2;
-    }
-
-    return db;
 }
 
 // ---------------- real state fetch ----------------
@@ -132,7 +118,6 @@ bool runScenarioRMW()
 {
     std::cout << "[scenario 2] RMW contention test starting...\n";
 
-    // init DB
     Client init("127.0.0.1", 7000);
 
     init.begin();
@@ -148,8 +133,10 @@ bool runScenarioRMW()
     for (auto &t : threads)
         t.join();
 
+    // build reference DB
+    ref.replayCommitted();
+    auto reference = ref.state();
     auto actual = getRealState();
-    auto reference = runReferenceModel();
 
     bool ok = true;
 
@@ -157,11 +144,20 @@ bool runScenarioRMW()
     {
         std::string key = "k" + std::to_string(i);
 
-        if (reference[key] != actual[key])
+        int ref_val = 0;
+
+        if (reference.find(key) != reference.end() &&
+            !reference.at(key).empty())
+        {
+            ref_val = std::stoi(reference.at(key));
+        }
+
+        if (ref_val != actual[key])
         {
             std::cout << "[FAIL] " << key
-                      << " ref=" << reference[key]
+                      << " ref=" << ref_val
                       << " actual=" << actual[key] << "\n";
+
             ok = false;
         }
     }
