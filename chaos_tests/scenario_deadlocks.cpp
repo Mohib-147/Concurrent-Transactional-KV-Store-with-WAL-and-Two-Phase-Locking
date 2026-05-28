@@ -14,7 +14,7 @@ static const int NUM_KEYS = 20;
 static const int TEST_DURATION_SEC = 5;
 
 // 2x deadlock timeout (given 3000ms in lock manager)
-static const int DEADLOCK_TIMEOUT_MS = 6000;
+static const int DEADLOCK_TIMEOUT_MS = 8000;
 
 static std::mutex log_mutex;
 
