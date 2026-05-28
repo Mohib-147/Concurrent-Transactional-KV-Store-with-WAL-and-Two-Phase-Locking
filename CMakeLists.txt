@@ -5,55 +5,78 @@ project(kvdb CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Compiler flags for debugging and warnings
+# Debug flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -g -O0")
 
-# Generate compile_commands.json for IntelliSense
+# Compile commands (IDE support)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# Include directories
 include_directories(include)
 
-# Find pthread (cross-platform way)
 find_package(Threads REQUIRED)
 
 # ============================================================================
-# SERVER EXECUTABLE
+# CORE DATABASE ENGINE (INCLUDES EVERYTHING)
 # ============================================================================
+
+file(GLOB CORE_SRC
+    src/core/*.cpp
+    src/protocol/*.cpp
+)
+
+add_library(kvdb_core ${CORE_SRC})
+
+target_include_directories(kvdb_core PUBLIC include src/core src/protocol)
+target_link_libraries(kvdb_core PUBLIC Threads::Threads)
+
+# ============================================================================
+# SERVER
+# ============================================================================
+
 add_executable(kvdb-server
     src/server/main.cpp
     src/server/server.cpp
     src/server/connection_handler.cpp
-    src/core/lock_manager.cpp
-    src/core/transaction_manager.cpp
-    src/core/store.cpp
-    src/protocol/parser.cpp
-    src/protocol/protocol.cpp
 )
 
-target_link_libraries(kvdb-server PRIVATE Threads::Threads)
 target_include_directories(kvdb-server PRIVATE include)
+target_link_libraries(kvdb-server PRIVATE kvdb_core Threads::Threads)
 
 # ============================================================================
-# CLIENT EXECUTABLE
+# CLIENT (PRODUCTION CLIENT)
 # ============================================================================
+
 add_executable(kvdb-cli
     src/client/main.cpp
     src/client/client.cpp
 )
 
-target_link_libraries(kvdb-cli PRIVATE Threads::Threads)
 target_include_directories(kvdb-cli PRIVATE include)
+target_link_libraries(kvdb-cli PRIVATE kvdb_core Threads::Threads)
 
 # ============================================================================
-# TEST EXECUTABLES
-# Each test file has its own main() — build them as separate targets.
+# CHAOS TEST DRIVER
 # ============================================================================
+
+file(GLOB CHAOS_SRC
+    chaos_tests/*.cpp
+)
+
+add_executable(chaos_driver ${CHAOS_SRC})
+
+target_include_directories(chaos_driver PRIVATE include chaos_tests)
+target_link_libraries(chaos_driver PRIVATE kvdb_core Threads::Threads)
+
+# ============================================================================
+# UNIT TESTS
+# ============================================================================
+
 add_executable(test_lock_manager
     tests/test_lock_manager.cpp
     src/core/lock_manager.cpp
     src/core/store.cpp
 )
+
 target_include_directories(test_lock_manager PRIVATE include src/core)
 target_link_libraries(test_lock_manager PRIVATE Threads::Threads)
 
@@ -63,6 +86,7 @@ add_executable(test_transaction_manager
     src/core/transaction_manager.cpp
     src/core/store.cpp
 )
+
 target_include_directories(test_transaction_manager PRIVATE include src/core)
 target_link_libraries(test_transaction_manager PRIVATE Threads::Threads)
 
@@ -72,5 +96,6 @@ add_executable(test_concurrent_basic
     src/core/transaction_manager.cpp
     src/core/store.cpp
 )
+
 target_include_directories(test_concurrent_basic PRIVATE include src/core)
 target_link_libraries(test_concurrent_basic PRIVATE Threads::Threads)
