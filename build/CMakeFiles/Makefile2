@@ -63,8 +63,10 @@ CMAKE_BINARY_DIR = /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Tw
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/kvdb_core.dir/all
 all: CMakeFiles/kvdb-server.dir/all
 all: CMakeFiles/kvdb-cli.dir/all
+all: CMakeFiles/chaos_driver.dir/all
 all: CMakeFiles/test_lock_manager.dir/all
 all: CMakeFiles/test_transaction_manager.dir/all
 all: CMakeFiles/test_concurrent_basic.dir/all
@@ -75,26 +77,54 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/kvdb_core.dir/clean
 clean: CMakeFiles/kvdb-server.dir/clean
 clean: CMakeFiles/kvdb-cli.dir/clean
+clean: CMakeFiles/chaos_driver.dir/clean
 clean: CMakeFiles/test_lock_manager.dir/clean
 clean: CMakeFiles/test_transaction_manager.dir/clean
 clean: CMakeFiles/test_concurrent_basic.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/kvdb_core.dir
+
+# All Build rule for target.
+CMakeFiles/kvdb_core.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=18,19,20,21,22,23,24,25,26,27 "Built target kvdb_core"
+.PHONY : CMakeFiles/kvdb_core.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/kvdb_core.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles 10
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/kvdb_core.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles 0
+.PHONY : CMakeFiles/kvdb_core.dir/rule
+
+# Convenience name for target.
+kvdb_core: CMakeFiles/kvdb_core.dir/rule
+.PHONY : kvdb_core
+
+# clean rule for target.
+CMakeFiles/kvdb_core.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/clean
+.PHONY : CMakeFiles/kvdb_core.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/kvdb-server.dir
 
 # All Build rule for target.
-CMakeFiles/kvdb-server.dir/all:
+CMakeFiles/kvdb-server.dir/all: CMakeFiles/kvdb_core.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-server.dir/build.make CMakeFiles/kvdb-server.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-server.dir/build.make CMakeFiles/kvdb-server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=4,5,6,7,8,9,10,11,12 "Built target kvdb-server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=14,15,16,17 "Built target kvdb-server"
 .PHONY : CMakeFiles/kvdb-server.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/kvdb-server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles 14
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/kvdb-server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles 0
 .PHONY : CMakeFiles/kvdb-server.dir/rule
@@ -112,15 +142,15 @@ CMakeFiles/kvdb-server.dir/clean:
 # Target rules for target CMakeFiles/kvdb-cli.dir
 
 # All Build rule for target.
-CMakeFiles/kvdb-cli.dir/all:
+CMakeFiles/kvdb-cli.dir/all: CMakeFiles/kvdb_core.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-cli.dir/build.make CMakeFiles/kvdb-cli.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-cli.dir/build.make CMakeFiles/kvdb-cli.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=1,2,3 "Built target kvdb-cli"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=11,12,13 "Built target kvdb-cli"
 .PHONY : CMakeFiles/kvdb-cli.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/kvdb-cli.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles 13
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/kvdb-cli.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles 0
 .PHONY : CMakeFiles/kvdb-cli.dir/rule
@@ -135,18 +165,44 @@ CMakeFiles/kvdb-cli.dir/clean:
 .PHONY : CMakeFiles/kvdb-cli.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/chaos_driver.dir
+
+# All Build rule for target.
+CMakeFiles/chaos_driver.dir/all: CMakeFiles/kvdb_core.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target chaos_driver"
+.PHONY : CMakeFiles/chaos_driver.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/chaos_driver.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles 20
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/chaos_driver.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles 0
+.PHONY : CMakeFiles/chaos_driver.dir/rule
+
+# Convenience name for target.
+chaos_driver: CMakeFiles/chaos_driver.dir/rule
+.PHONY : chaos_driver
+
+# clean rule for target.
+CMakeFiles/chaos_driver.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/clean
+.PHONY : CMakeFiles/chaos_driver.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/test_lock_manager.dir
 
 # All Build rule for target.
-CMakeFiles/test_lock_manager.dir/all:
+CMakeFiles/test_lock_manager.dir/all: CMakeFiles/kvdb_core.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lock_manager.dir/build.make CMakeFiles/test_lock_manager.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lock_manager.dir/build.make CMakeFiles/test_lock_manager.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=18,19,20,21 "Built target test_lock_manager"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=30,31 "Built target test_lock_manager"
 .PHONY : CMakeFiles/test_lock_manager.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_lock_manager.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_lock_manager.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_lock_manager.dir/rule
@@ -164,15 +220,15 @@ CMakeFiles/test_lock_manager.dir/clean:
 # Target rules for target CMakeFiles/test_transaction_manager.dir
 
 # All Build rule for target.
-CMakeFiles/test_transaction_manager.dir/all:
+CMakeFiles/test_transaction_manager.dir/all: CMakeFiles/kvdb_core.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_transaction_manager.dir/build.make CMakeFiles/test_transaction_manager.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_transaction_manager.dir/build.make CMakeFiles/test_transaction_manager.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=22,23,24,25,26 "Built target test_transaction_manager"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=32,33 "Built target test_transaction_manager"
 .PHONY : CMakeFiles/test_transaction_manager.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_transaction_manager.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_transaction_manager.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_transaction_manager.dir/rule
@@ -190,15 +246,15 @@ CMakeFiles/test_transaction_manager.dir/clean:
 # Target rules for target CMakeFiles/test_concurrent_basic.dir
 
 # All Build rule for target.
-CMakeFiles/test_concurrent_basic.dir/all:
+CMakeFiles/test_concurrent_basic.dir/all: CMakeFiles/kvdb_core.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concurrent_basic.dir/build.make CMakeFiles/test_concurrent_basic.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concurrent_basic.dir/build.make CMakeFiles/test_concurrent_basic.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=13,14,15,16,17 "Built target test_concurrent_basic"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=28,29 "Built target test_concurrent_basic"
 .PHONY : CMakeFiles/test_concurrent_basic.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_concurrent_basic.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_concurrent_basic.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_concurrent_basic.dir/rule

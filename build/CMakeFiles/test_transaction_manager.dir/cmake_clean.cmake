@@ -1,10 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.o"
-  "CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.o.d"
-  "CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.o"
-  "CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.o.d"
-  "CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.o"
-  "CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.o.d"
   "CMakeFiles/test_transaction_manager.dir/tests/test_transaction_manager.cpp.o"
   "CMakeFiles/test_transaction_manager.dir/tests/test_transaction_manager.cpp.o.d"
   "test_transaction_manager"

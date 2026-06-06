@@ -1,128 +1,158 @@
 [
 {
   "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb-server.dir/src/server/main.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/server/main.cpp",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb_core.dir/src/core/checkpoint_manager.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/checkpoint_manager.cpp",
+  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/checkpoint_manager.cpp",
+  "output": "CMakeFiles/kvdb_core.dir/src/core/checkpoint_manager.cpp.o"
+},
+{
+  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb_core.dir/src/core/group_commit.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/group_commit.cpp",
+  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/group_commit.cpp",
+  "output": "CMakeFiles/kvdb_core.dir/src/core/group_commit.cpp.o"
+},
+{
+  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb_core.dir/src/core/lock_manager.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/lock_manager.cpp",
+  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/lock_manager.cpp",
+  "output": "CMakeFiles/kvdb_core.dir/src/core/lock_manager.cpp.o"
+},
+{
+  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb_core.dir/src/core/recovery_manager.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/recovery_manager.cpp",
+  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/recovery_manager.cpp",
+  "output": "CMakeFiles/kvdb_core.dir/src/core/recovery_manager.cpp.o"
+},
+{
+  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb_core.dir/src/core/store.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/store.cpp",
+  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/store.cpp",
+  "output": "CMakeFiles/kvdb_core.dir/src/core/store.cpp.o"
+},
+{
+  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb_core.dir/src/core/transaction_manager.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/transaction_manager.cpp",
+  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/transaction_manager.cpp",
+  "output": "CMakeFiles/kvdb_core.dir/src/core/transaction_manager.cpp.o"
+},
+{
+  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb_core.dir/src/core/wal_manager.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/wal_manager.cpp",
+  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/wal_manager.cpp",
+  "output": "CMakeFiles/kvdb_core.dir/src/core/wal_manager.cpp.o"
+},
+{
+  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb_core.dir/src/protocol/parser.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol/parser.cpp",
+  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol/parser.cpp",
+  "output": "CMakeFiles/kvdb_core.dir/src/protocol/parser.cpp.o"
+},
+{
+  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb_core.dir/src/protocol/protocol.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol/protocol.cpp",
+  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol/protocol.cpp",
+  "output": "CMakeFiles/kvdb_core.dir/src/protocol/protocol.cpp.o"
+},
+{
+  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb-server.dir/src/server/main.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/server/main.cpp",
   "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/server/main.cpp",
   "output": "CMakeFiles/kvdb-server.dir/src/server/main.cpp.o"
 },
 {
   "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb-server.dir/src/server/server.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/server/server.cpp",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb-server.dir/src/server/server.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/server/server.cpp",
   "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/server/server.cpp",
   "output": "CMakeFiles/kvdb-server.dir/src/server/server.cpp.o"
 },
 {
   "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb-server.dir/src/server/connection_handler.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/server/connection_handler.cpp",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb-server.dir/src/server/connection_handler.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/server/connection_handler.cpp",
   "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/server/connection_handler.cpp",
   "output": "CMakeFiles/kvdb-server.dir/src/server/connection_handler.cpp.o"
 },
 {
   "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb-server.dir/src/core/lock_manager.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/lock_manager.cpp",
-  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/lock_manager.cpp",
-  "output": "CMakeFiles/kvdb-server.dir/src/core/lock_manager.cpp.o"
-},
-{
-  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb-server.dir/src/core/transaction_manager.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/transaction_manager.cpp",
-  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/transaction_manager.cpp",
-  "output": "CMakeFiles/kvdb-server.dir/src/core/transaction_manager.cpp.o"
-},
-{
-  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb-server.dir/src/core/store.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/store.cpp",
-  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/store.cpp",
-  "output": "CMakeFiles/kvdb-server.dir/src/core/store.cpp.o"
-},
-{
-  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb-server.dir/src/protocol/parser.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol/parser.cpp",
-  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol/parser.cpp",
-  "output": "CMakeFiles/kvdb-server.dir/src/protocol/parser.cpp.o"
-},
-{
-  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb-server.dir/src/protocol/protocol.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol/protocol.cpp",
-  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol/protocol.cpp",
-  "output": "CMakeFiles/kvdb-server.dir/src/protocol/protocol.cpp.o"
-},
-{
-  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb-cli.dir/src/client/main.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/client/main.cpp",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb-cli.dir/src/client/main.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/client/main.cpp",
   "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/client/main.cpp",
   "output": "CMakeFiles/kvdb-cli.dir/src/client/main.cpp.o"
 },
 {
   "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb-cli.dir/src/client/client.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/client/client.cpp",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/kvdb-cli.dir/src/client/client.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/client/client.cpp",
   "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/client/client.cpp",
   "output": "CMakeFiles/kvdb-cli.dir/src/client/client.cpp.o"
 },
 {
   "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/test_lock_manager.dir/tests/test_lock_manager.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/tests/test_lock_manager.cpp",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/chaos_driver.dir/chaos_tests/client.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests/client.cpp",
+  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests/client.cpp",
+  "output": "CMakeFiles/chaos_driver.dir/chaos_tests/client.cpp.o"
+},
+{
+  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/chaos_driver.dir/chaos_tests/main.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests/main.cpp",
+  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests/main.cpp",
+  "output": "CMakeFiles/chaos_driver.dir/chaos_tests/main.cpp.o"
+},
+{
+  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/chaos_driver.dir/chaos_tests/reference_model.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests/reference_model.cpp",
+  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests/reference_model.cpp",
+  "output": "CMakeFiles/chaos_driver.dir/chaos_tests/reference_model.cpp.o"
+},
+{
+  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/chaos_driver.dir/chaos_tests/scenario_counter.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests/scenario_counter.cpp",
+  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests/scenario_counter.cpp",
+  "output": "CMakeFiles/chaos_driver.dir/chaos_tests/scenario_counter.cpp.o"
+},
+{
+  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/chaos_driver.dir/chaos_tests/scenario_crash.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests/scenario_crash.cpp",
+  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests/scenario_crash.cpp",
+  "output": "CMakeFiles/chaos_driver.dir/chaos_tests/scenario_crash.cpp.o"
+},
+{
+  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/chaos_driver.dir/chaos_tests/scenario_deadlocks.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests/scenario_deadlocks.cpp",
+  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests/scenario_deadlocks.cpp",
+  "output": "CMakeFiles/chaos_driver.dir/chaos_tests/scenario_deadlocks.cpp.o"
+},
+{
+  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/chaos_driver.dir/chaos_tests/scenario_isolation.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests/scenario_isolation.cpp",
+  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests/scenario_isolation.cpp",
+  "output": "CMakeFiles/chaos_driver.dir/chaos_tests/scenario_isolation.cpp.o"
+},
+{
+  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/chaos_driver.dir/chaos_tests/scenario_reader_writer.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests/scenario_reader_writer.cpp",
+  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests/scenario_reader_writer.cpp",
+  "output": "CMakeFiles/chaos_driver.dir/chaos_tests/scenario_reader_writer.cpp.o"
+},
+{
+  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/chaos_driver.dir/chaos_tests/scenario_rmw.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests/scenario_rmw.cpp",
+  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/chaos_tests/scenario_rmw.cpp",
+  "output": "CMakeFiles/chaos_driver.dir/chaos_tests/scenario_rmw.cpp.o"
+},
+{
+  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/test_lock_manager.dir/tests/test_lock_manager.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/tests/test_lock_manager.cpp",
   "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/tests/test_lock_manager.cpp",
   "output": "CMakeFiles/test_lock_manager.dir/tests/test_lock_manager.cpp.o"
 },
 {
   "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/test_lock_manager.dir/src/core/lock_manager.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/lock_manager.cpp",
-  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/lock_manager.cpp",
-  "output": "CMakeFiles/test_lock_manager.dir/src/core/lock_manager.cpp.o"
-},
-{
-  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/test_lock_manager.dir/src/core/store.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/store.cpp",
-  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/store.cpp",
-  "output": "CMakeFiles/test_lock_manager.dir/src/core/store.cpp.o"
-},
-{
-  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/test_transaction_manager.dir/tests/test_transaction_manager.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/tests/test_transaction_manager.cpp",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/test_transaction_manager.dir/tests/test_transaction_manager.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/tests/test_transaction_manager.cpp",
   "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/tests/test_transaction_manager.cpp",
   "output": "CMakeFiles/test_transaction_manager.dir/tests/test_transaction_manager.cpp.o"
 },
 {
   "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/lock_manager.cpp",
-  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/lock_manager.cpp",
-  "output": "CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.o"
-},
-{
-  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/transaction_manager.cpp",
-  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/transaction_manager.cpp",
-  "output": "CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.o"
-},
-{
-  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/store.cpp",
-  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/store.cpp",
-  "output": "CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.o"
-},
-{
-  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/test_concurrent_basic.dir/tests/test_concurrent_basic.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/tests/test_concurrent_basic.cpp",
+  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/test_concurrent_basic.dir/tests/test_concurrent_basic.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/tests/test_concurrent_basic.cpp",
   "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/tests/test_concurrent_basic.cpp",
   "output": "CMakeFiles/test_concurrent_basic.dir/tests/test_concurrent_basic.cpp.o"
-},
-{
-  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/test_concurrent_basic.dir/src/core/lock_manager.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/lock_manager.cpp",
-  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/lock_manager.cpp",
-  "output": "CMakeFiles/test_concurrent_basic.dir/src/core/lock_manager.cpp.o"
-},
-{
-  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/test_concurrent_basic.dir/src/core/transaction_manager.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/transaction_manager.cpp",
-  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/transaction_manager.cpp",
-  "output": "CMakeFiles/test_concurrent_basic.dir/src/core/transaction_manager.cpp.o"
-},
-{
-  "directory": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build",
-  "command": "/usr/bin/c++  -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core  -Wall -Wextra -g -O0 -std=gnu++17 -o CMakeFiles/test_concurrent_basic.dir/src/core/store.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/store.cpp",
-  "file": "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/store.cpp",
-  "output": "CMakeFiles/test_concurrent_basic.dir/src/core/store.cpp.o"
 }
 ]

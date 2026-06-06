@@ -8,8 +8,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/lock_manager.cpp" "CMakeFiles/test_lock_manager.dir/src/core/lock_manager.cpp.o" "gcc" "CMakeFiles/test_lock_manager.dir/src/core/lock_manager.cpp.o.d"
-  "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/store.cpp" "CMakeFiles/test_lock_manager.dir/src/core/store.cpp.o" "gcc" "CMakeFiles/test_lock_manager.dir/src/core/store.cpp.o.d"
   "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/tests/test_lock_manager.cpp" "CMakeFiles/test_lock_manager.dir/tests/test_lock_manager.cpp.o" "gcc" "CMakeFiles/test_lock_manager.dir/tests/test_lock_manager.cpp.o.d"
   )
 

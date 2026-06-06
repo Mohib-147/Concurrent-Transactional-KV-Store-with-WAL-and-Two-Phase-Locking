@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include
+CXX_INCLUDES = -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core -I/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol
 
 CXX_FLAGS =  -Wall -Wextra -g -O0 -std=gnu++17
 

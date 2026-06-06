@@ -1,0 +1,2 @@
+/usr/bin/ar qc libkvdb_core.a CMakeFiles/kvdb_core.dir/src/core/checkpoint_manager.cpp.o CMakeFiles/kvdb_core.dir/src/core/group_commit.cpp.o CMakeFiles/kvdb_core.dir/src/core/lock_manager.cpp.o CMakeFiles/kvdb_core.dir/src/core/recovery_manager.cpp.o CMakeFiles/kvdb_core.dir/src/core/store.cpp.o CMakeFiles/kvdb_core.dir/src/core/transaction_manager.cpp.o CMakeFiles/kvdb_core.dir/src/core/wal_manager.cpp.o CMakeFiles/kvdb_core.dir/src/protocol/parser.cpp.o CMakeFiles/kvdb_core.dir/src/protocol/protocol.cpp.o
+/usr/bin/ranlib libkvdb_core.a

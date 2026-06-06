@@ -111,86 +111,11 @@ CMakeFiles/kvdb-server.dir/src/server/connection_handler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/kvdb-server.dir/src/server/connection_handler.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/server/connection_handler.cpp -o CMakeFiles/kvdb-server.dir/src/server/connection_handler.cpp.s
 
-CMakeFiles/kvdb-server.dir/src/core/lock_manager.cpp.o: CMakeFiles/kvdb-server.dir/flags.make
-CMakeFiles/kvdb-server.dir/src/core/lock_manager.cpp.o: /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/lock_manager.cpp
-CMakeFiles/kvdb-server.dir/src/core/lock_manager.cpp.o: CMakeFiles/kvdb-server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/kvdb-server.dir/src/core/lock_manager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/kvdb-server.dir/src/core/lock_manager.cpp.o -MF CMakeFiles/kvdb-server.dir/src/core/lock_manager.cpp.o.d -o CMakeFiles/kvdb-server.dir/src/core/lock_manager.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/lock_manager.cpp
-
-CMakeFiles/kvdb-server.dir/src/core/lock_manager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/kvdb-server.dir/src/core/lock_manager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/lock_manager.cpp > CMakeFiles/kvdb-server.dir/src/core/lock_manager.cpp.i
-
-CMakeFiles/kvdb-server.dir/src/core/lock_manager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/kvdb-server.dir/src/core/lock_manager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/lock_manager.cpp -o CMakeFiles/kvdb-server.dir/src/core/lock_manager.cpp.s
-
-CMakeFiles/kvdb-server.dir/src/core/transaction_manager.cpp.o: CMakeFiles/kvdb-server.dir/flags.make
-CMakeFiles/kvdb-server.dir/src/core/transaction_manager.cpp.o: /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/transaction_manager.cpp
-CMakeFiles/kvdb-server.dir/src/core/transaction_manager.cpp.o: CMakeFiles/kvdb-server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/kvdb-server.dir/src/core/transaction_manager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/kvdb-server.dir/src/core/transaction_manager.cpp.o -MF CMakeFiles/kvdb-server.dir/src/core/transaction_manager.cpp.o.d -o CMakeFiles/kvdb-server.dir/src/core/transaction_manager.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/transaction_manager.cpp
-
-CMakeFiles/kvdb-server.dir/src/core/transaction_manager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/kvdb-server.dir/src/core/transaction_manager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/transaction_manager.cpp > CMakeFiles/kvdb-server.dir/src/core/transaction_manager.cpp.i
-
-CMakeFiles/kvdb-server.dir/src/core/transaction_manager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/kvdb-server.dir/src/core/transaction_manager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/transaction_manager.cpp -o CMakeFiles/kvdb-server.dir/src/core/transaction_manager.cpp.s
-
-CMakeFiles/kvdb-server.dir/src/core/store.cpp.o: CMakeFiles/kvdb-server.dir/flags.make
-CMakeFiles/kvdb-server.dir/src/core/store.cpp.o: /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/store.cpp
-CMakeFiles/kvdb-server.dir/src/core/store.cpp.o: CMakeFiles/kvdb-server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/kvdb-server.dir/src/core/store.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/kvdb-server.dir/src/core/store.cpp.o -MF CMakeFiles/kvdb-server.dir/src/core/store.cpp.o.d -o CMakeFiles/kvdb-server.dir/src/core/store.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/store.cpp
-
-CMakeFiles/kvdb-server.dir/src/core/store.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/kvdb-server.dir/src/core/store.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/store.cpp > CMakeFiles/kvdb-server.dir/src/core/store.cpp.i
-
-CMakeFiles/kvdb-server.dir/src/core/store.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/kvdb-server.dir/src/core/store.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/store.cpp -o CMakeFiles/kvdb-server.dir/src/core/store.cpp.s
-
-CMakeFiles/kvdb-server.dir/src/protocol/parser.cpp.o: CMakeFiles/kvdb-server.dir/flags.make
-CMakeFiles/kvdb-server.dir/src/protocol/parser.cpp.o: /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol/parser.cpp
-CMakeFiles/kvdb-server.dir/src/protocol/parser.cpp.o: CMakeFiles/kvdb-server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/kvdb-server.dir/src/protocol/parser.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/kvdb-server.dir/src/protocol/parser.cpp.o -MF CMakeFiles/kvdb-server.dir/src/protocol/parser.cpp.o.d -o CMakeFiles/kvdb-server.dir/src/protocol/parser.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol/parser.cpp
-
-CMakeFiles/kvdb-server.dir/src/protocol/parser.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/kvdb-server.dir/src/protocol/parser.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol/parser.cpp > CMakeFiles/kvdb-server.dir/src/protocol/parser.cpp.i
-
-CMakeFiles/kvdb-server.dir/src/protocol/parser.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/kvdb-server.dir/src/protocol/parser.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol/parser.cpp -o CMakeFiles/kvdb-server.dir/src/protocol/parser.cpp.s
-
-CMakeFiles/kvdb-server.dir/src/protocol/protocol.cpp.o: CMakeFiles/kvdb-server.dir/flags.make
-CMakeFiles/kvdb-server.dir/src/protocol/protocol.cpp.o: /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol/protocol.cpp
-CMakeFiles/kvdb-server.dir/src/protocol/protocol.cpp.o: CMakeFiles/kvdb-server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/kvdb-server.dir/src/protocol/protocol.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/kvdb-server.dir/src/protocol/protocol.cpp.o -MF CMakeFiles/kvdb-server.dir/src/protocol/protocol.cpp.o.d -o CMakeFiles/kvdb-server.dir/src/protocol/protocol.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol/protocol.cpp
-
-CMakeFiles/kvdb-server.dir/src/protocol/protocol.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/kvdb-server.dir/src/protocol/protocol.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol/protocol.cpp > CMakeFiles/kvdb-server.dir/src/protocol/protocol.cpp.i
-
-CMakeFiles/kvdb-server.dir/src/protocol/protocol.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/kvdb-server.dir/src/protocol/protocol.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/protocol/protocol.cpp -o CMakeFiles/kvdb-server.dir/src/protocol/protocol.cpp.s
-
 # Object files for target kvdb-server
 kvdb__server_OBJECTS = \
 "CMakeFiles/kvdb-server.dir/src/server/main.cpp.o" \
 "CMakeFiles/kvdb-server.dir/src/server/server.cpp.o" \
-"CMakeFiles/kvdb-server.dir/src/server/connection_handler.cpp.o" \
-"CMakeFiles/kvdb-server.dir/src/core/lock_manager.cpp.o" \
-"CMakeFiles/kvdb-server.dir/src/core/transaction_manager.cpp.o" \
-"CMakeFiles/kvdb-server.dir/src/core/store.cpp.o" \
-"CMakeFiles/kvdb-server.dir/src/protocol/parser.cpp.o" \
-"CMakeFiles/kvdb-server.dir/src/protocol/protocol.cpp.o"
+"CMakeFiles/kvdb-server.dir/src/server/connection_handler.cpp.o"
 
 # External object files for target kvdb-server
 kvdb__server_EXTERNAL_OBJECTS =
@@ -198,14 +123,10 @@ kvdb__server_EXTERNAL_OBJECTS =
 kvdb-server: CMakeFiles/kvdb-server.dir/src/server/main.cpp.o
 kvdb-server: CMakeFiles/kvdb-server.dir/src/server/server.cpp.o
 kvdb-server: CMakeFiles/kvdb-server.dir/src/server/connection_handler.cpp.o
-kvdb-server: CMakeFiles/kvdb-server.dir/src/core/lock_manager.cpp.o
-kvdb-server: CMakeFiles/kvdb-server.dir/src/core/transaction_manager.cpp.o
-kvdb-server: CMakeFiles/kvdb-server.dir/src/core/store.cpp.o
-kvdb-server: CMakeFiles/kvdb-server.dir/src/protocol/parser.cpp.o
-kvdb-server: CMakeFiles/kvdb-server.dir/src/protocol/protocol.cpp.o
 kvdb-server: CMakeFiles/kvdb-server.dir/build.make
+kvdb-server: libkvdb_core.a
 kvdb-server: CMakeFiles/kvdb-server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable kvdb-server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable kvdb-server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/kvdb-server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

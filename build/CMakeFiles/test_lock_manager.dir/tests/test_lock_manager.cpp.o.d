@@ -171,6 +171,8 @@ CMakeFiles/test_lock_manager.dir/tests/test_lock_manager.cpp.o: \
  /usr/include/c++/13/bits/std_mutex.h \
  /usr/include/c++/13/bits/unique_lock.h \
  /usr/include/c++/13/condition_variable /usr/include/c++/13/chrono \
+ /usr/include/c++/13/deque /usr/include/c++/13/bits/stl_deque.h \
+ /usr/include/c++/13/bits/deque.tcc \
  /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/tests/../src/core/lock_manager.h \
  /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/include/kvdb.h \
  /usr/include/c++/13/cassert /usr/include/assert.h \

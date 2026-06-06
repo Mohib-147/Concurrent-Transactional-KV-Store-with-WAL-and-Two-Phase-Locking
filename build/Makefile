@@ -117,6 +117,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named kvdb_core
+
+# Build rule for target.
+kvdb_core: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 kvdb_core
+.PHONY : kvdb_core
+
+# fast build rule for target.
+kvdb_core/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/build
+.PHONY : kvdb_core/fast
+
+#=============================================================================
 # Target rules for targets named kvdb-server
 
 # Build rule for target.
@@ -141,6 +154,19 @@ kvdb-cli: cmake_check_build_system
 kvdb-cli/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-cli.dir/build.make CMakeFiles/kvdb-cli.dir/build
 .PHONY : kvdb-cli/fast
+
+#=============================================================================
+# Target rules for targets named chaos_driver
+
+# Build rule for target.
+chaos_driver: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chaos_driver
+.PHONY : chaos_driver
+
+# fast build rule for target.
+chaos_driver/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/build
+.PHONY : chaos_driver/fast
 
 #=============================================================================
 # Target rules for targets named test_lock_manager
@@ -180,6 +206,222 @@ test_concurrent_basic: cmake_check_build_system
 test_concurrent_basic/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concurrent_basic.dir/build.make CMakeFiles/test_concurrent_basic.dir/build
 .PHONY : test_concurrent_basic/fast
+
+chaos_tests/client.o: chaos_tests/client.cpp.o
+.PHONY : chaos_tests/client.o
+
+# target to build an object file
+chaos_tests/client.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/client.cpp.o
+.PHONY : chaos_tests/client.cpp.o
+
+chaos_tests/client.i: chaos_tests/client.cpp.i
+.PHONY : chaos_tests/client.i
+
+# target to preprocess a source file
+chaos_tests/client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/client.cpp.i
+.PHONY : chaos_tests/client.cpp.i
+
+chaos_tests/client.s: chaos_tests/client.cpp.s
+.PHONY : chaos_tests/client.s
+
+# target to generate assembly for a file
+chaos_tests/client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/client.cpp.s
+.PHONY : chaos_tests/client.cpp.s
+
+chaos_tests/main.o: chaos_tests/main.cpp.o
+.PHONY : chaos_tests/main.o
+
+# target to build an object file
+chaos_tests/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/main.cpp.o
+.PHONY : chaos_tests/main.cpp.o
+
+chaos_tests/main.i: chaos_tests/main.cpp.i
+.PHONY : chaos_tests/main.i
+
+# target to preprocess a source file
+chaos_tests/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/main.cpp.i
+.PHONY : chaos_tests/main.cpp.i
+
+chaos_tests/main.s: chaos_tests/main.cpp.s
+.PHONY : chaos_tests/main.s
+
+# target to generate assembly for a file
+chaos_tests/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/main.cpp.s
+.PHONY : chaos_tests/main.cpp.s
+
+chaos_tests/reference_model.o: chaos_tests/reference_model.cpp.o
+.PHONY : chaos_tests/reference_model.o
+
+# target to build an object file
+chaos_tests/reference_model.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/reference_model.cpp.o
+.PHONY : chaos_tests/reference_model.cpp.o
+
+chaos_tests/reference_model.i: chaos_tests/reference_model.cpp.i
+.PHONY : chaos_tests/reference_model.i
+
+# target to preprocess a source file
+chaos_tests/reference_model.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/reference_model.cpp.i
+.PHONY : chaos_tests/reference_model.cpp.i
+
+chaos_tests/reference_model.s: chaos_tests/reference_model.cpp.s
+.PHONY : chaos_tests/reference_model.s
+
+# target to generate assembly for a file
+chaos_tests/reference_model.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/reference_model.cpp.s
+.PHONY : chaos_tests/reference_model.cpp.s
+
+chaos_tests/scenario_counter.o: chaos_tests/scenario_counter.cpp.o
+.PHONY : chaos_tests/scenario_counter.o
+
+# target to build an object file
+chaos_tests/scenario_counter.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/scenario_counter.cpp.o
+.PHONY : chaos_tests/scenario_counter.cpp.o
+
+chaos_tests/scenario_counter.i: chaos_tests/scenario_counter.cpp.i
+.PHONY : chaos_tests/scenario_counter.i
+
+# target to preprocess a source file
+chaos_tests/scenario_counter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/scenario_counter.cpp.i
+.PHONY : chaos_tests/scenario_counter.cpp.i
+
+chaos_tests/scenario_counter.s: chaos_tests/scenario_counter.cpp.s
+.PHONY : chaos_tests/scenario_counter.s
+
+# target to generate assembly for a file
+chaos_tests/scenario_counter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/scenario_counter.cpp.s
+.PHONY : chaos_tests/scenario_counter.cpp.s
+
+chaos_tests/scenario_crash.o: chaos_tests/scenario_crash.cpp.o
+.PHONY : chaos_tests/scenario_crash.o
+
+# target to build an object file
+chaos_tests/scenario_crash.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/scenario_crash.cpp.o
+.PHONY : chaos_tests/scenario_crash.cpp.o
+
+chaos_tests/scenario_crash.i: chaos_tests/scenario_crash.cpp.i
+.PHONY : chaos_tests/scenario_crash.i
+
+# target to preprocess a source file
+chaos_tests/scenario_crash.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/scenario_crash.cpp.i
+.PHONY : chaos_tests/scenario_crash.cpp.i
+
+chaos_tests/scenario_crash.s: chaos_tests/scenario_crash.cpp.s
+.PHONY : chaos_tests/scenario_crash.s
+
+# target to generate assembly for a file
+chaos_tests/scenario_crash.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/scenario_crash.cpp.s
+.PHONY : chaos_tests/scenario_crash.cpp.s
+
+chaos_tests/scenario_deadlocks.o: chaos_tests/scenario_deadlocks.cpp.o
+.PHONY : chaos_tests/scenario_deadlocks.o
+
+# target to build an object file
+chaos_tests/scenario_deadlocks.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/scenario_deadlocks.cpp.o
+.PHONY : chaos_tests/scenario_deadlocks.cpp.o
+
+chaos_tests/scenario_deadlocks.i: chaos_tests/scenario_deadlocks.cpp.i
+.PHONY : chaos_tests/scenario_deadlocks.i
+
+# target to preprocess a source file
+chaos_tests/scenario_deadlocks.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/scenario_deadlocks.cpp.i
+.PHONY : chaos_tests/scenario_deadlocks.cpp.i
+
+chaos_tests/scenario_deadlocks.s: chaos_tests/scenario_deadlocks.cpp.s
+.PHONY : chaos_tests/scenario_deadlocks.s
+
+# target to generate assembly for a file
+chaos_tests/scenario_deadlocks.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/scenario_deadlocks.cpp.s
+.PHONY : chaos_tests/scenario_deadlocks.cpp.s
+
+chaos_tests/scenario_isolation.o: chaos_tests/scenario_isolation.cpp.o
+.PHONY : chaos_tests/scenario_isolation.o
+
+# target to build an object file
+chaos_tests/scenario_isolation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/scenario_isolation.cpp.o
+.PHONY : chaos_tests/scenario_isolation.cpp.o
+
+chaos_tests/scenario_isolation.i: chaos_tests/scenario_isolation.cpp.i
+.PHONY : chaos_tests/scenario_isolation.i
+
+# target to preprocess a source file
+chaos_tests/scenario_isolation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/scenario_isolation.cpp.i
+.PHONY : chaos_tests/scenario_isolation.cpp.i
+
+chaos_tests/scenario_isolation.s: chaos_tests/scenario_isolation.cpp.s
+.PHONY : chaos_tests/scenario_isolation.s
+
+# target to generate assembly for a file
+chaos_tests/scenario_isolation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/scenario_isolation.cpp.s
+.PHONY : chaos_tests/scenario_isolation.cpp.s
+
+chaos_tests/scenario_reader_writer.o: chaos_tests/scenario_reader_writer.cpp.o
+.PHONY : chaos_tests/scenario_reader_writer.o
+
+# target to build an object file
+chaos_tests/scenario_reader_writer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/scenario_reader_writer.cpp.o
+.PHONY : chaos_tests/scenario_reader_writer.cpp.o
+
+chaos_tests/scenario_reader_writer.i: chaos_tests/scenario_reader_writer.cpp.i
+.PHONY : chaos_tests/scenario_reader_writer.i
+
+# target to preprocess a source file
+chaos_tests/scenario_reader_writer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/scenario_reader_writer.cpp.i
+.PHONY : chaos_tests/scenario_reader_writer.cpp.i
+
+chaos_tests/scenario_reader_writer.s: chaos_tests/scenario_reader_writer.cpp.s
+.PHONY : chaos_tests/scenario_reader_writer.s
+
+# target to generate assembly for a file
+chaos_tests/scenario_reader_writer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/scenario_reader_writer.cpp.s
+.PHONY : chaos_tests/scenario_reader_writer.cpp.s
+
+chaos_tests/scenario_rmw.o: chaos_tests/scenario_rmw.cpp.o
+.PHONY : chaos_tests/scenario_rmw.o
+
+# target to build an object file
+chaos_tests/scenario_rmw.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/scenario_rmw.cpp.o
+.PHONY : chaos_tests/scenario_rmw.cpp.o
+
+chaos_tests/scenario_rmw.i: chaos_tests/scenario_rmw.cpp.i
+.PHONY : chaos_tests/scenario_rmw.i
+
+# target to preprocess a source file
+chaos_tests/scenario_rmw.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/scenario_rmw.cpp.i
+.PHONY : chaos_tests/scenario_rmw.cpp.i
+
+chaos_tests/scenario_rmw.s: chaos_tests/scenario_rmw.cpp.s
+.PHONY : chaos_tests/scenario_rmw.s
+
+# target to generate assembly for a file
+chaos_tests/scenario_rmw.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chaos_driver.dir/build.make CMakeFiles/chaos_driver.dir/chaos_tests/scenario_rmw.cpp.s
+.PHONY : chaos_tests/scenario_rmw.cpp.s
 
 src/client/client.o: src/client/client.cpp.o
 .PHONY : src/client/client.o
@@ -229,15 +471,60 @@ src/client/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-cli.dir/build.make CMakeFiles/kvdb-cli.dir/src/client/main.cpp.s
 .PHONY : src/client/main.cpp.s
 
+src/core/checkpoint_manager.o: src/core/checkpoint_manager.cpp.o
+.PHONY : src/core/checkpoint_manager.o
+
+# target to build an object file
+src/core/checkpoint_manager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/checkpoint_manager.cpp.o
+.PHONY : src/core/checkpoint_manager.cpp.o
+
+src/core/checkpoint_manager.i: src/core/checkpoint_manager.cpp.i
+.PHONY : src/core/checkpoint_manager.i
+
+# target to preprocess a source file
+src/core/checkpoint_manager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/checkpoint_manager.cpp.i
+.PHONY : src/core/checkpoint_manager.cpp.i
+
+src/core/checkpoint_manager.s: src/core/checkpoint_manager.cpp.s
+.PHONY : src/core/checkpoint_manager.s
+
+# target to generate assembly for a file
+src/core/checkpoint_manager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/checkpoint_manager.cpp.s
+.PHONY : src/core/checkpoint_manager.cpp.s
+
+src/core/group_commit.o: src/core/group_commit.cpp.o
+.PHONY : src/core/group_commit.o
+
+# target to build an object file
+src/core/group_commit.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/group_commit.cpp.o
+.PHONY : src/core/group_commit.cpp.o
+
+src/core/group_commit.i: src/core/group_commit.cpp.i
+.PHONY : src/core/group_commit.i
+
+# target to preprocess a source file
+src/core/group_commit.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/group_commit.cpp.i
+.PHONY : src/core/group_commit.cpp.i
+
+src/core/group_commit.s: src/core/group_commit.cpp.s
+.PHONY : src/core/group_commit.s
+
+# target to generate assembly for a file
+src/core/group_commit.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/group_commit.cpp.s
+.PHONY : src/core/group_commit.cpp.s
+
 src/core/lock_manager.o: src/core/lock_manager.cpp.o
 .PHONY : src/core/lock_manager.o
 
 # target to build an object file
 src/core/lock_manager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-server.dir/build.make CMakeFiles/kvdb-server.dir/src/core/lock_manager.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lock_manager.dir/build.make CMakeFiles/test_lock_manager.dir/src/core/lock_manager.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_transaction_manager.dir/build.make CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concurrent_basic.dir/build.make CMakeFiles/test_concurrent_basic.dir/src/core/lock_manager.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/lock_manager.cpp.o
 .PHONY : src/core/lock_manager.cpp.o
 
 src/core/lock_manager.i: src/core/lock_manager.cpp.i
@@ -245,10 +532,7 @@ src/core/lock_manager.i: src/core/lock_manager.cpp.i
 
 # target to preprocess a source file
 src/core/lock_manager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-server.dir/build.make CMakeFiles/kvdb-server.dir/src/core/lock_manager.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lock_manager.dir/build.make CMakeFiles/test_lock_manager.dir/src/core/lock_manager.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_transaction_manager.dir/build.make CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concurrent_basic.dir/build.make CMakeFiles/test_concurrent_basic.dir/src/core/lock_manager.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/lock_manager.cpp.i
 .PHONY : src/core/lock_manager.cpp.i
 
 src/core/lock_manager.s: src/core/lock_manager.cpp.s
@@ -256,21 +540,39 @@ src/core/lock_manager.s: src/core/lock_manager.cpp.s
 
 # target to generate assembly for a file
 src/core/lock_manager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-server.dir/build.make CMakeFiles/kvdb-server.dir/src/core/lock_manager.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lock_manager.dir/build.make CMakeFiles/test_lock_manager.dir/src/core/lock_manager.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_transaction_manager.dir/build.make CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concurrent_basic.dir/build.make CMakeFiles/test_concurrent_basic.dir/src/core/lock_manager.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/lock_manager.cpp.s
 .PHONY : src/core/lock_manager.cpp.s
+
+src/core/recovery_manager.o: src/core/recovery_manager.cpp.o
+.PHONY : src/core/recovery_manager.o
+
+# target to build an object file
+src/core/recovery_manager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/recovery_manager.cpp.o
+.PHONY : src/core/recovery_manager.cpp.o
+
+src/core/recovery_manager.i: src/core/recovery_manager.cpp.i
+.PHONY : src/core/recovery_manager.i
+
+# target to preprocess a source file
+src/core/recovery_manager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/recovery_manager.cpp.i
+.PHONY : src/core/recovery_manager.cpp.i
+
+src/core/recovery_manager.s: src/core/recovery_manager.cpp.s
+.PHONY : src/core/recovery_manager.s
+
+# target to generate assembly for a file
+src/core/recovery_manager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/recovery_manager.cpp.s
+.PHONY : src/core/recovery_manager.cpp.s
 
 src/core/store.o: src/core/store.cpp.o
 .PHONY : src/core/store.o
 
 # target to build an object file
 src/core/store.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-server.dir/build.make CMakeFiles/kvdb-server.dir/src/core/store.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lock_manager.dir/build.make CMakeFiles/test_lock_manager.dir/src/core/store.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_transaction_manager.dir/build.make CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concurrent_basic.dir/build.make CMakeFiles/test_concurrent_basic.dir/src/core/store.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/store.cpp.o
 .PHONY : src/core/store.cpp.o
 
 src/core/store.i: src/core/store.cpp.i
@@ -278,10 +580,7 @@ src/core/store.i: src/core/store.cpp.i
 
 # target to preprocess a source file
 src/core/store.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-server.dir/build.make CMakeFiles/kvdb-server.dir/src/core/store.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lock_manager.dir/build.make CMakeFiles/test_lock_manager.dir/src/core/store.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_transaction_manager.dir/build.make CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concurrent_basic.dir/build.make CMakeFiles/test_concurrent_basic.dir/src/core/store.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/store.cpp.i
 .PHONY : src/core/store.cpp.i
 
 src/core/store.s: src/core/store.cpp.s
@@ -289,10 +588,7 @@ src/core/store.s: src/core/store.cpp.s
 
 # target to generate assembly for a file
 src/core/store.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-server.dir/build.make CMakeFiles/kvdb-server.dir/src/core/store.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lock_manager.dir/build.make CMakeFiles/test_lock_manager.dir/src/core/store.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_transaction_manager.dir/build.make CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concurrent_basic.dir/build.make CMakeFiles/test_concurrent_basic.dir/src/core/store.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/store.cpp.s
 .PHONY : src/core/store.cpp.s
 
 src/core/transaction_manager.o: src/core/transaction_manager.cpp.o
@@ -300,9 +596,7 @@ src/core/transaction_manager.o: src/core/transaction_manager.cpp.o
 
 # target to build an object file
 src/core/transaction_manager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-server.dir/build.make CMakeFiles/kvdb-server.dir/src/core/transaction_manager.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_transaction_manager.dir/build.make CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concurrent_basic.dir/build.make CMakeFiles/test_concurrent_basic.dir/src/core/transaction_manager.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/transaction_manager.cpp.o
 .PHONY : src/core/transaction_manager.cpp.o
 
 src/core/transaction_manager.i: src/core/transaction_manager.cpp.i
@@ -310,9 +604,7 @@ src/core/transaction_manager.i: src/core/transaction_manager.cpp.i
 
 # target to preprocess a source file
 src/core/transaction_manager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-server.dir/build.make CMakeFiles/kvdb-server.dir/src/core/transaction_manager.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_transaction_manager.dir/build.make CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concurrent_basic.dir/build.make CMakeFiles/test_concurrent_basic.dir/src/core/transaction_manager.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/transaction_manager.cpp.i
 .PHONY : src/core/transaction_manager.cpp.i
 
 src/core/transaction_manager.s: src/core/transaction_manager.cpp.s
@@ -320,17 +612,39 @@ src/core/transaction_manager.s: src/core/transaction_manager.cpp.s
 
 # target to generate assembly for a file
 src/core/transaction_manager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-server.dir/build.make CMakeFiles/kvdb-server.dir/src/core/transaction_manager.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_transaction_manager.dir/build.make CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concurrent_basic.dir/build.make CMakeFiles/test_concurrent_basic.dir/src/core/transaction_manager.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/transaction_manager.cpp.s
 .PHONY : src/core/transaction_manager.cpp.s
+
+src/core/wal_manager.o: src/core/wal_manager.cpp.o
+.PHONY : src/core/wal_manager.o
+
+# target to build an object file
+src/core/wal_manager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/wal_manager.cpp.o
+.PHONY : src/core/wal_manager.cpp.o
+
+src/core/wal_manager.i: src/core/wal_manager.cpp.i
+.PHONY : src/core/wal_manager.i
+
+# target to preprocess a source file
+src/core/wal_manager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/wal_manager.cpp.i
+.PHONY : src/core/wal_manager.cpp.i
+
+src/core/wal_manager.s: src/core/wal_manager.cpp.s
+.PHONY : src/core/wal_manager.s
+
+# target to generate assembly for a file
+src/core/wal_manager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/core/wal_manager.cpp.s
+.PHONY : src/core/wal_manager.cpp.s
 
 src/protocol/parser.o: src/protocol/parser.cpp.o
 .PHONY : src/protocol/parser.o
 
 # target to build an object file
 src/protocol/parser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-server.dir/build.make CMakeFiles/kvdb-server.dir/src/protocol/parser.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/protocol/parser.cpp.o
 .PHONY : src/protocol/parser.cpp.o
 
 src/protocol/parser.i: src/protocol/parser.cpp.i
@@ -338,7 +652,7 @@ src/protocol/parser.i: src/protocol/parser.cpp.i
 
 # target to preprocess a source file
 src/protocol/parser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-server.dir/build.make CMakeFiles/kvdb-server.dir/src/protocol/parser.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/protocol/parser.cpp.i
 .PHONY : src/protocol/parser.cpp.i
 
 src/protocol/parser.s: src/protocol/parser.cpp.s
@@ -346,7 +660,7 @@ src/protocol/parser.s: src/protocol/parser.cpp.s
 
 # target to generate assembly for a file
 src/protocol/parser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-server.dir/build.make CMakeFiles/kvdb-server.dir/src/protocol/parser.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/protocol/parser.cpp.s
 .PHONY : src/protocol/parser.cpp.s
 
 src/protocol/protocol.o: src/protocol/protocol.cpp.o
@@ -354,7 +668,7 @@ src/protocol/protocol.o: src/protocol/protocol.cpp.o
 
 # target to build an object file
 src/protocol/protocol.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-server.dir/build.make CMakeFiles/kvdb-server.dir/src/protocol/protocol.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/protocol/protocol.cpp.o
 .PHONY : src/protocol/protocol.cpp.o
 
 src/protocol/protocol.i: src/protocol/protocol.cpp.i
@@ -362,7 +676,7 @@ src/protocol/protocol.i: src/protocol/protocol.cpp.i
 
 # target to preprocess a source file
 src/protocol/protocol.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-server.dir/build.make CMakeFiles/kvdb-server.dir/src/protocol/protocol.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/protocol/protocol.cpp.i
 .PHONY : src/protocol/protocol.cpp.i
 
 src/protocol/protocol.s: src/protocol/protocol.cpp.s
@@ -370,7 +684,7 @@ src/protocol/protocol.s: src/protocol/protocol.cpp.s
 
 # target to generate assembly for a file
 src/protocol/protocol.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb-server.dir/build.make CMakeFiles/kvdb-server.dir/src/protocol/protocol.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kvdb_core.dir/build.make CMakeFiles/kvdb_core.dir/src/protocol/protocol.cpp.s
 .PHONY : src/protocol/protocol.cpp.s
 
 src/server/connection_handler.o: src/server/connection_handler.cpp.o
@@ -525,26 +839,67 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... chaos_driver"
 	@echo "... kvdb-cli"
 	@echo "... kvdb-server"
+	@echo "... kvdb_core"
 	@echo "... test_concurrent_basic"
 	@echo "... test_lock_manager"
 	@echo "... test_transaction_manager"
+	@echo "... chaos_tests/client.o"
+	@echo "... chaos_tests/client.i"
+	@echo "... chaos_tests/client.s"
+	@echo "... chaos_tests/main.o"
+	@echo "... chaos_tests/main.i"
+	@echo "... chaos_tests/main.s"
+	@echo "... chaos_tests/reference_model.o"
+	@echo "... chaos_tests/reference_model.i"
+	@echo "... chaos_tests/reference_model.s"
+	@echo "... chaos_tests/scenario_counter.o"
+	@echo "... chaos_tests/scenario_counter.i"
+	@echo "... chaos_tests/scenario_counter.s"
+	@echo "... chaos_tests/scenario_crash.o"
+	@echo "... chaos_tests/scenario_crash.i"
+	@echo "... chaos_tests/scenario_crash.s"
+	@echo "... chaos_tests/scenario_deadlocks.o"
+	@echo "... chaos_tests/scenario_deadlocks.i"
+	@echo "... chaos_tests/scenario_deadlocks.s"
+	@echo "... chaos_tests/scenario_isolation.o"
+	@echo "... chaos_tests/scenario_isolation.i"
+	@echo "... chaos_tests/scenario_isolation.s"
+	@echo "... chaos_tests/scenario_reader_writer.o"
+	@echo "... chaos_tests/scenario_reader_writer.i"
+	@echo "... chaos_tests/scenario_reader_writer.s"
+	@echo "... chaos_tests/scenario_rmw.o"
+	@echo "... chaos_tests/scenario_rmw.i"
+	@echo "... chaos_tests/scenario_rmw.s"
 	@echo "... src/client/client.o"
 	@echo "... src/client/client.i"
 	@echo "... src/client/client.s"
 	@echo "... src/client/main.o"
 	@echo "... src/client/main.i"
 	@echo "... src/client/main.s"
+	@echo "... src/core/checkpoint_manager.o"
+	@echo "... src/core/checkpoint_manager.i"
+	@echo "... src/core/checkpoint_manager.s"
+	@echo "... src/core/group_commit.o"
+	@echo "... src/core/group_commit.i"
+	@echo "... src/core/group_commit.s"
 	@echo "... src/core/lock_manager.o"
 	@echo "... src/core/lock_manager.i"
 	@echo "... src/core/lock_manager.s"
+	@echo "... src/core/recovery_manager.o"
+	@echo "... src/core/recovery_manager.i"
+	@echo "... src/core/recovery_manager.s"
 	@echo "... src/core/store.o"
 	@echo "... src/core/store.i"
 	@echo "... src/core/store.s"
 	@echo "... src/core/transaction_manager.o"
 	@echo "... src/core/transaction_manager.i"
 	@echo "... src/core/transaction_manager.s"
+	@echo "... src/core/wal_manager.o"
+	@echo "... src/core/wal_manager.i"
+	@echo "... src/core/wal_manager.s"
 	@echo "... src/protocol/parser.o"
 	@echo "... src/protocol/parser.i"
 	@echo "... src/protocol/parser.s"

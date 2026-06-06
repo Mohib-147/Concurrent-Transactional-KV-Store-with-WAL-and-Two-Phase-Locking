@@ -108,6 +108,7 @@ kvdb__cli_EXTERNAL_OBJECTS =
 kvdb-cli: CMakeFiles/kvdb-cli.dir/src/client/main.cpp.o
 kvdb-cli: CMakeFiles/kvdb-cli.dir/src/client/client.cpp.o
 kvdb-cli: CMakeFiles/kvdb-cli.dir/build.make
+kvdb-cli: libkvdb_core.a
 kvdb-cli: CMakeFiles/kvdb-cli.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable kvdb-cli"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/kvdb-cli.dir/link.txt --verbose=$(VERBOSE)

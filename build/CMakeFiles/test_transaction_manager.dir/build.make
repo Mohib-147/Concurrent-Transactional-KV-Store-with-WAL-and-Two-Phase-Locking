@@ -83,65 +83,18 @@ CMakeFiles/test_transaction_manager.dir/tests/test_transaction_manager.cpp.s: cm
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test_transaction_manager.dir/tests/test_transaction_manager.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/tests/test_transaction_manager.cpp -o CMakeFiles/test_transaction_manager.dir/tests/test_transaction_manager.cpp.s
 
-CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.o: CMakeFiles/test_transaction_manager.dir/flags.make
-CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.o: /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/lock_manager.cpp
-CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.o: CMakeFiles/test_transaction_manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.o -MF CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.o.d -o CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/lock_manager.cpp
-
-CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/lock_manager.cpp > CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.i
-
-CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/lock_manager.cpp -o CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.s
-
-CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.o: CMakeFiles/test_transaction_manager.dir/flags.make
-CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.o: /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/transaction_manager.cpp
-CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.o: CMakeFiles/test_transaction_manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.o -MF CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.o.d -o CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/transaction_manager.cpp
-
-CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/transaction_manager.cpp > CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.i
-
-CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/transaction_manager.cpp -o CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.s
-
-CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.o: CMakeFiles/test_transaction_manager.dir/flags.make
-CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.o: /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/store.cpp
-CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.o: CMakeFiles/test_transaction_manager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.o -MF CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.o.d -o CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.o -c /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/store.cpp
-
-CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/store.cpp > CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.i
-
-CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/src/core/store.cpp -o CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.s
-
 # Object files for target test_transaction_manager
 test_transaction_manager_OBJECTS = \
-"CMakeFiles/test_transaction_manager.dir/tests/test_transaction_manager.cpp.o" \
-"CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.o" \
-"CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.o" \
-"CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.o"
+"CMakeFiles/test_transaction_manager.dir/tests/test_transaction_manager.cpp.o"
 
 # External object files for target test_transaction_manager
 test_transaction_manager_EXTERNAL_OBJECTS =
 
 test_transaction_manager: CMakeFiles/test_transaction_manager.dir/tests/test_transaction_manager.cpp.o
-test_transaction_manager: CMakeFiles/test_transaction_manager.dir/src/core/lock_manager.cpp.o
-test_transaction_manager: CMakeFiles/test_transaction_manager.dir/src/core/transaction_manager.cpp.o
-test_transaction_manager: CMakeFiles/test_transaction_manager.dir/src/core/store.cpp.o
 test_transaction_manager: CMakeFiles/test_transaction_manager.dir/build.make
+test_transaction_manager: libkvdb_core.a
 test_transaction_manager: CMakeFiles/test_transaction_manager.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable test_transaction_manager"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable test_transaction_manager"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_transaction_manager.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

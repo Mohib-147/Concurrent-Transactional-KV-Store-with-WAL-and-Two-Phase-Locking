@@ -1,8 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/test_lock_manager.dir/src/core/lock_manager.cpp.o"
-  "CMakeFiles/test_lock_manager.dir/src/core/lock_manager.cpp.o.d"
-  "CMakeFiles/test_lock_manager.dir/src/core/store.cpp.o"
-  "CMakeFiles/test_lock_manager.dir/src/core/store.cpp.o.d"
   "CMakeFiles/test_lock_manager.dir/tests/test_lock_manager.cpp.o"
   "CMakeFiles/test_lock_manager.dir/tests/test_lock_manager.cpp.o.d"
   "test_lock_manager"
