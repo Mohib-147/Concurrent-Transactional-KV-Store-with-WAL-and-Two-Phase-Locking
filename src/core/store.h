@@ -2,8 +2,8 @@
 #define STORE_H
 
 #include "kvdb.h"
-#include <map>
-#include <shared_mutex>
+#include <unordered_map>
+#include <vector>
 
 class Store
 {
@@ -15,6 +15,8 @@ public:
 
     void put(const Key &key, const Value &value);
 
+    std::unordered_map<Key, Value> getAllEntries() const;
+
     bool delete_key(const Key &key);
 
     bool exists(const Key &key) const;
@@ -25,9 +27,18 @@ public:
 
     void clear();
 
+    struct WriteOp
+    {
+        Key key;
+        Value value;
+        bool is_delete;
+    };
+
+    void applyBatch(const std::vector<WriteOp> &ops);
+
 private:
-    std::map<Key, Value> data_;
-    mutable std::shared_mutex mutex_;
+    std::unordered_map<Key, Value> data_;
+    mutable std::mutex mutex_;
 };
 
 #endif

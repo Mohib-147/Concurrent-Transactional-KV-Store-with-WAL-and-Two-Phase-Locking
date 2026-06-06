@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
     std::cout << "[server] starting up..." << std::endl;
 
     auto server = std::make_shared<Server>(port);
+    server->initAfterConstruction();
     server->start();
 
     return 0;

@@ -10,19 +10,12 @@
 #include <mutex>
 #include <condition_variable>
 #include <chrono>
-
-// ============================================================================
-// BASIC TYPE DEFINITIONS
-// ============================================================================
+#include <deque>
 
 using TxnId = uint32_t;
 using Key = std::string;
 using Value = std::string;
 using SessionId = uint32_t;
-
-// ============================================================================
-// LOCK MODES
-// ============================================================================
 
 enum class LockMode
 {
@@ -46,10 +39,6 @@ inline std::string lockModeToString(LockMode mode)
     }
 }
 
-// ============================================================================
-// ISOLATION LEVELS
-// ============================================================================
-
 enum class IsolationLevel
 {
     READ_COMMITTED,
@@ -65,10 +54,6 @@ inline IsolationLevel parseIsolationLevel(const std::string &str)
     return IsolationLevel::REPEATABLE_READ;
 }
 
-// ============================================================================
-// TRANSACTION STATE
-// ============================================================================
-
 enum class TxnState
 {
     IDLE,
@@ -77,33 +62,21 @@ enum class TxnState
     ABORTED
 };
 
-// ============================================================================
-// LOCK WAITER (used in lock manager)
-// ============================================================================
-
 struct LockWaiter
 {
     TxnId txn_id;
     LockMode requested_mode;
     std::shared_ptr<std::condition_variable> cv;
-    std::shared_ptr<bool> granted;    // shared_ptr keeps flag alive after queue erase
-    std::shared_ptr<bool> deadlocked; // shared_ptr keeps flag alive after queue erase
+    std::shared_ptr<bool> granted;
+    std::shared_ptr<bool> deadlocked;
 };
-
-// ============================================================================
-// LOCK ENTRY (used in lock manager)
-// ============================================================================
 
 struct LockEntry
 {
     LockMode current_mode = LockMode::NONE;
     std::set<TxnId> holders;
-    std::vector<LockWaiter> wait_queue;
+    std::deque<LockWaiter> wait_queue;
 };
-
-// ============================================================================
-// TRANSACTION INFO (used in transaction manager)
-// ============================================================================
 
 struct TransactionInfo
 {
@@ -118,10 +91,6 @@ struct TransactionInfo
     std::chrono::system_clock::time_point txn_start_time;
 };
 
-// ============================================================================
-// COMMAND RESPONSE
-// ============================================================================
-
 struct Response
 {
     bool success;
@@ -129,4 +98,4 @@ struct Response
     std::string data;
 };
 
-#endif // KVDB_H
+#endif

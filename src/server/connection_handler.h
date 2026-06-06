@@ -3,6 +3,7 @@
 
 #include "kvdb.h"
 #include <memory>
+#include <string>
 
 class Server;
 class TransactionManager;
@@ -11,7 +12,6 @@ class ConnectionHandler
 {
 public:
     explicit ConnectionHandler(int client_socket, SessionId session_id, std::shared_ptr<Server> server);
-
     ~ConnectionHandler();
 
     void run();
@@ -22,7 +22,10 @@ private:
     std::shared_ptr<Server> server_;
     std::shared_ptr<TransactionManager> txn_manager_;
 
-    std::string readLine();
+    std::string inbuf_; // <<--- ADD: persistent input buffer
+
+    // Updated: reads from buffer/socket and returns a line (or empty on disconnect)
+    bool getNextCommandLine(std::string &cmd_line);
 
     void writeLine(const std::string &response);
 

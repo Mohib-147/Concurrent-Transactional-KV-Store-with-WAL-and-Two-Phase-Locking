@@ -12,6 +12,7 @@ namespace Protocol
     constexpr const char *CMD_DELETE = "DELETE";
     constexpr const char *CMD_COMMIT = "COMMIT";
     constexpr const char *CMD_ABORT = "ABORT";
+    constexpr const char *CMD_CHECKPOINT = "CHECKPOINT";
     constexpr const char *CMD_STATS = "\\stats";
     constexpr const char *CMD_LOCKS = "\\locks";
     constexpr const char *CMD_CRASH = "CRASH";

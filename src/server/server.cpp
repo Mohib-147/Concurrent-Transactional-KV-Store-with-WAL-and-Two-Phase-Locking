@@ -13,9 +13,12 @@
 
 Server::Server(int port) : port_(port)
 {
-    // Initialize shared resources
     store_ = std::make_shared<Store>();
     lock_manager_ = std::make_shared<LockManager>();
+    wal_manager_ = std::make_shared<WALManager>("wal/wal.log");
+    group_commit_manager_ = std::make_shared<GroupCommitManager>(
+        *wal_manager_,
+        5);
 }
 
 Server::~Server()
@@ -27,9 +30,26 @@ void Server::start()
 {
     std::cout << "[server] starting up..." << std::endl;
 
+    // =========================
+    // 1. RECOVERY PHASE (MUST RUN FIRST)
+    // =========================
+    try
+    {
+        RecoveryManager recovery(store_, "wal/wal.log", "data/data.db");
+        recovery.recover();
+        std::cout << "[server] recovery completed successfully\n";
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "[server] recovery failed: " << e.what() << std::endl;
+        return;
+    }
+
     running_ = true;
 
-    // Create server socket
+    // =========================
+    // 2. SOCKET SETUP
+    // =========================
     server_socket_ = socket(AF_INET, SOCK_STREAM, 0);
     if (server_socket_ < 0)
     {
@@ -37,7 +57,6 @@ void Server::start()
         return;
     }
 
-    // Set socket options (allow reuse of address)
     int opt = 1;
     if (setsockopt(server_socket_, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) < 0)
     {
@@ -46,7 +65,6 @@ void Server::start()
         return;
     }
 
-    // Bind to port
     sockaddr_in server_addr;
     std::memset(&server_addr, 0, sizeof(server_addr));
     server_addr.sin_family = AF_INET;
@@ -60,7 +78,6 @@ void Server::start()
         return;
     }
 
-    // Listen for connections
     if (listen(server_socket_, 5) < 0)
     {
         std::cerr << "[server] ERROR: Failed to listen" << std::endl;
@@ -68,12 +85,18 @@ void Server::start()
         return;
     }
 
+    // =========================
+    // 3. START GROUP COMMIT
+    // =========================
+    if (group_commit_manager_)
+    {
+        group_commit_manager_->start();
+        std::cout << "[server] group commit service started\n";
+    }
+
     std::cout << "[server] listening on port " << port_ << std::endl;
-    std::cout << "[server] lock manager initialized" << std::endl;
     std::cout << "[server] ready to accept connections" << std::endl;
 
-    // Accept loop — must be called on a shared_ptr-managed Server instance
-    // so that shared_from_this() works inside acceptLoop.
     acceptLoop();
 }
 
@@ -84,7 +107,6 @@ void Server::acceptLoop()
         sockaddr_in client_addr;
         socklen_t client_addr_len = sizeof(client_addr);
 
-        // Accept incoming connection
         int client_socket = accept(server_socket_,
                                    (struct sockaddr *)&client_addr,
                                    &client_addr_len);
@@ -98,17 +120,14 @@ void Server::acceptLoop()
             break;
         }
 
-        // Assign session ID
         SessionId session_id;
         {
             std::unique_lock<std::mutex> lock(txn_managers_mutex_);
             session_id = next_session_id_++;
         }
 
-        // Get transaction manager for this session
         auto txn_mgr = getTransactionManager(session_id);
 
-        // Spawn thread to handle connection
         auto handler = std::make_shared<ConnectionHandler>(
             client_socket,
             session_id,
@@ -131,9 +150,8 @@ std::shared_ptr<TransactionManager> Server::getTransactionManager(SessionId sess
         return it->second;
     }
 
-    // Create new transaction manager for this session
-    auto txn_mgr = std::make_shared<TransactionManager>(session_id);
-    txn_mgr->setGlobalReferences(store_, lock_manager_);
+    auto txn_mgr = std::make_shared<TransactionManager>(session_id, shared_from_this());
+    txn_mgr->setGlobalReferences(store_, lock_manager_, wal_manager_, group_commit_manager_);
     txn_managers_[session_id] = txn_mgr;
 
     return txn_mgr;
@@ -143,9 +161,62 @@ void Server::shutdown()
 {
     running_ = false;
 
+    if (group_commit_manager_)
+        group_commit_manager_->stop();
+
     if (server_socket_ >= 0)
     {
         close(server_socket_);
         server_socket_ = -1;
     }
+}
+
+TxnId Server::allocateTxnId()
+{
+    return next_txn_id_++;
+}
+
+bool Server::hasActiveTransactions() const
+{
+    std::lock_guard<std::mutex> lock(txn_managers_mutex_);
+
+    for (const auto &pair : txn_managers_)
+    {
+        if (pair.second && pair.second->isInTransaction())
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void Server::initAfterConstruction()
+{
+    checkpoint_manager_ = std::make_shared<CheckpointManager>(
+        store_,
+        wal_manager_,
+        shared_from_this(),
+        "data/data.db",
+        "wal/wal.log");
+}
+
+bool Server::handleCheckpoint()
+{
+    // 1. Must have checkpoint subsystem
+    if (!checkpoint_manager_)
+    {
+        return false;
+    }
+
+    // 2. Safety rule from manual:
+    // Refuse checkpoint if ANY transaction is active
+    if (hasActiveTransactions())
+    {
+        return false;
+    }
+
+    bool ok = checkpoint_manager_->createCheckpoint();
+
+    return ok;
 }

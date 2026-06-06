@@ -34,10 +34,22 @@ bool LockManager::acquireLock(TxnId txn_id, const Key &key, LockMode mode, int t
         if (entry.current_mode == LockMode::EXCLUSIVE || mode == LockMode::SHARED)
             return true;
 
-        if (entry.holders.size() == 1)
+        bool only_holder = (entry.holders.size() == 1);
+        bool at_front = (!entry.wait_queue.empty() && entry.wait_queue.front().txn_id == txn_id);
+
+        if (only_holder)
         {
-            entry.current_mode = LockMode::EXCLUSIVE;
-            return true;
+            if (entry.wait_queue.empty())
+            {
+                entry.current_mode = LockMode::EXCLUSIVE;
+                return true;
+            }
+            else if (at_front)
+            {
+                entry.wait_queue.pop_front();
+                entry.current_mode = LockMode::EXCLUSIVE;
+                return true;
+            }
         }
         goto add_to_wait_queue;
     }
@@ -65,7 +77,7 @@ add_to_wait_queue:
     waiter.cv = std::make_shared<std::condition_variable>();
 
     entry.wait_queue.push_back(waiter);
-    auto cv = entry.wait_queue.back().cv; // capture before we release the lock
+    auto cv = entry.wait_queue.back().cv;
 
     auto timeout = std::chrono::milliseconds(timeout_ms);
     bool notified = cv->wait_for(lock, timeout, [&granted_flag, &deadlocked_flag]()
@@ -106,16 +118,30 @@ void LockManager::releaseAllLocks(TxnId txn_id)
             keys_to_process.push_back(pair.first);
     }
 
+    std::vector<Key> keys_to_erase;
+
     for (const Key &key : keys_to_process)
     {
-        LockEntry &entry = lock_table_[key];
+        auto entry_it = lock_table_.find(key);
+        if (entry_it == lock_table_.end())
+            continue;
+        LockEntry &entry = entry_it->second;
         entry.holders.erase(txn_id);
 
         if (entry.holders.empty())
         {
             entry.current_mode = LockMode::NONE;
             processWaiters(key);
+            if (entry.holders.empty() && entry.wait_queue.empty())
+            {
+                keys_to_erase.push_back(key);
+            }
         }
+    }
+
+    for (const Key &key : keys_to_erase)
+    {
+        lock_table_.erase(key);
     }
 }
 
@@ -123,17 +149,21 @@ void LockManager::releaseLock(TxnId txn_id, const Key &key)
 {
     std::unique_lock<std::mutex> lock(lock_table_mutex_);
 
-    auto it = lock_table_.find(key);
-    if (it == lock_table_.end())
+    auto entry_it = lock_table_.find(key);
+    if (entry_it == lock_table_.end())
         return;
 
-    LockEntry &entry = it->second;
+    LockEntry &entry = entry_it->second;
     entry.holders.erase(txn_id);
 
     if (entry.holders.empty())
     {
         entry.current_mode = LockMode::NONE;
         processWaiters(key);
+        if (entry.holders.empty() && entry.wait_queue.empty())
+        {
+            lock_table_.erase(entry_it);
+        }
     }
 }
 
