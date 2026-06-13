@@ -1,6 +1,7 @@
 #include "client.h"
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 int main(int argc, char *argv[])
 {
@@ -22,6 +23,12 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+    std::string greeting = client.receiveLine();
+    if (!greeting.empty())
+    {
+        std::cout << greeting << std::endl;
+    }
+
     std::string line;
     std::cout << "> ";
 
@@ -33,13 +40,23 @@ int main(int argc, char *argv[])
             continue;
         }
 
-        if (line == "QUIT;" || line == "QUIT")
+        std::string upper = line;
+        std::transform(upper.begin(), upper.end(), upper.begin(),
+                       [](unsigned char c)
+                       { return static_cast<char>(std::toupper(c)); });
+
+        if (upper == "QUIT;" || upper == "QUIT")
         {
             std::cout << "Disconnecting..." << std::endl;
             break;
         }
 
         std::string response = client.sendCommand(line);
+        if (response.empty())
+        {
+            std::cout << "Server closed connection." << std::endl;
+            break;
+        }
         std::cout << response << std::endl;
         std::cout << "> ";
     }

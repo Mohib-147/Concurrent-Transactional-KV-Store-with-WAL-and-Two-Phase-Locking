@@ -128,8 +128,10 @@ CMakeFiles/kvdb-cli.dir/src/client/client.cpp.o
  /usr/include/linux/posix_types.h
  /usr/include/linux/stddef.h
  /usr/include/locale.h
+ /usr/include/netdb.h
  /usr/include/netinet/in.h
  /usr/include/pthread.h
+ /usr/include/rpc/netdb.h
  /usr/include/sched.h
  /usr/include/stdc-predef.h
  /usr/include/stdint.h
@@ -163,6 +165,7 @@ CMakeFiles/kvdb-cli.dir/src/client/client.cpp.o
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h
  /usr/include/x86_64-linux-gnu/bits/locale.h
  /usr/include/x86_64-linux-gnu/bits/long-double.h
+ /usr/include/x86_64-linux-gnu/bits/netdb.h
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h
  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h
@@ -193,12 +196,14 @@ CMakeFiles/kvdb-cli.dir/src/client/client.cpp.o
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h
  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h
  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h
+ /usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h
  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h
  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h
  /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h
  /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h
+ /usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h
  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h
  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h
  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h

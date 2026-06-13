@@ -179,10 +179,11 @@ std::string ConnectionHandler::handleCommand(const std::string &cmd_line)
 
     else if (cmd.name == "COMMIT")
     {
+        TxnId committed_txn_id = txn_manager_->getCurrentTxnId();
         std::string result = txn_manager_->commit();
         if (result.empty())
         {
-            return "txn " + std::to_string(txn_manager_->getCurrentTxnId()) + " committed.";
+            return "txn " + std::to_string(committed_txn_id) + " committed.";
         }
         else
         {

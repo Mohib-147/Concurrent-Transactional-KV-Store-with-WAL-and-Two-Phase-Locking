@@ -74,13 +74,22 @@ std::string Client::sendCommand(const std::string &command)
 
     // Send command
     std::string msg = command + "\n";
-    ssize_t sent = send(socket_, msg.c_str(), msg.length(), 0);
+    ssize_t sent = send(socket_, msg.c_str(), msg.length(), MSG_NOSIGNAL);
     if (sent < 0)
     {
         return "ERROR: Failed to send";
     }
 
     // Receive response
+    return readLine();
+}
+
+std::string Client::receiveLine()
+{
+    if (socket_ < 0)
+    {
+        return "";
+    }
     return readLine();
 }
 

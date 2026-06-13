@@ -14,6 +14,7 @@ public:
     bool isConnected() const { return socket_ >= 0; }
 
     std::string sendCommand(const std::string &command);
+    std::string receiveLine();
 
     void close();
 
