@@ -1,1 +1,1 @@
-/usr/bin/c++  -Wall -Wextra -g -O0 "CMakeFiles/kvdb-cli.dir/src/client/main.cpp.o" "CMakeFiles/kvdb-cli.dir/src/client/client.cpp.o" -o kvdb-cli  libkvdb_core.a 
+/usr/bin/c++  -Wall -Wextra -g -O0 "CMakeFiles/kvdb-cli.dir/src/client/main.cpp.o" "CMakeFiles/kvdb-cli.dir/src/client/client.cpp.o" -o bin/kvdb-cli  libkvdb_core.a 

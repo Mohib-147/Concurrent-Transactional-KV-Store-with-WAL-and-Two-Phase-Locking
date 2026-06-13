@@ -1,1 +1,1 @@
-/usr/bin/c++  -Wall -Wextra -g -O0 CMakeFiles/test_lock_manager.dir/tests/test_lock_manager.cpp.o -o test_lock_manager  libkvdb_core.a 
+/usr/bin/c++  -Wall -Wextra -g -O0 CMakeFiles/test_lock_manager.dir/tests/test_lock_manager.cpp.o -o bin/test_lock_manager  libkvdb_core.a 

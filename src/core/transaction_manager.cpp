@@ -1,7 +1,7 @@
 #include "transaction_manager.h"
 #include "lock_manager.h"
 #include "store.h"
-#include "server.h"
+#include "../server/server.h"
 #include "wal_manager.h"
 #include "group_commit.h"
 #include <iostream>

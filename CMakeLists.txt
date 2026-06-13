@@ -5,6 +5,10 @@ project(kvdb CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Build output directories
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
+
 # Debug flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -g -O0")
 
@@ -14,6 +18,13 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 include_directories(include)
 
 find_package(Threads REQUIRED)
+
+# ============================================================================
+# CREATE REQUIRED RUNTIME DIRECTORIES
+# ============================================================================
+file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/wal")
+file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/data")
+
 
 # ============================================================================
 # CORE DATABASE ENGINE (INCLUDES EVERYTHING)
@@ -71,31 +82,28 @@ target_link_libraries(chaos_driver PRIVATE kvdb_core Threads::Threads)
 # UNIT TESTS
 # ============================================================================
 
+enable_testing()
+
 add_executable(test_lock_manager
     tests/test_lock_manager.cpp
-    src/core/lock_manager.cpp
-    src/core/store.cpp
 )
 
 target_include_directories(test_lock_manager PRIVATE include src/core)
-target_link_libraries(test_lock_manager PRIVATE Threads::Threads)
+target_link_libraries(test_lock_manager PRIVATE kvdb_core Threads::Threads)
+add_test(NAME LockManager COMMAND test_lock_manager)
 
 add_executable(test_transaction_manager
     tests/test_transaction_manager.cpp
-    src/core/lock_manager.cpp
-    src/core/transaction_manager.cpp
-    src/core/store.cpp
 )
 
 target_include_directories(test_transaction_manager PRIVATE include src/core)
-target_link_libraries(test_transaction_manager PRIVATE Threads::Threads)
+target_link_libraries(test_transaction_manager PRIVATE kvdb_core Threads::Threads)
+add_test(NAME TransactionManager COMMAND test_transaction_manager)
 
 add_executable(test_concurrent_basic
     tests/test_concurrent_basic.cpp
-    src/core/lock_manager.cpp
-    src/core/transaction_manager.cpp
-    src/core/store.cpp
 )
 
 target_include_directories(test_concurrent_basic PRIVATE include src/core)
-target_link_libraries(test_concurrent_basic PRIVATE Threads::Threads)
+target_link_libraries(test_concurrent_basic PRIVATE kvdb_core Threads::Threads)
+add_test(NAME ConcurrentBasic COMMAND test_concurrent_basic)

@@ -5,8 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/kvdb-server.dir/src/server/main.cpp.o.d"
   "CMakeFiles/kvdb-server.dir/src/server/server.cpp.o"
   "CMakeFiles/kvdb-server.dir/src/server/server.cpp.o.d"
-  "kvdb-server"
-  "kvdb-server.pdb"
+  "bin/kvdb-server"
+  "bin/kvdb-server.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

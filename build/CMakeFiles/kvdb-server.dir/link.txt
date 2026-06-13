@@ -1,1 +1,1 @@
-/usr/bin/c++  -Wall -Wextra -g -O0 "CMakeFiles/kvdb-server.dir/src/server/main.cpp.o" "CMakeFiles/kvdb-server.dir/src/server/server.cpp.o" "CMakeFiles/kvdb-server.dir/src/server/connection_handler.cpp.o" -o kvdb-server  libkvdb_core.a 
+/usr/bin/c++  -Wall -Wextra -g -O0 "CMakeFiles/kvdb-server.dir/src/server/main.cpp.o" "CMakeFiles/kvdb-server.dir/src/server/server.cpp.o" "CMakeFiles/kvdb-server.dir/src/server/connection_handler.cpp.o" -o bin/kvdb-server  libkvdb_core.a 

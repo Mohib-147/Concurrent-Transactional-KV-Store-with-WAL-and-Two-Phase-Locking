@@ -3,10 +3,11 @@
 
 #include "store.h"
 #include "wal_manager.h"
-#include "server.h"
 
 #include <memory>
 #include <string>
+
+class Server;
 
 class CheckpointManager
 {

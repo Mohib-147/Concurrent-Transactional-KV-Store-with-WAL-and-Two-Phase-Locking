@@ -7,6 +7,7 @@
 #include "../core/wal_manager.h"
 #include "../core/group_commit.h"
 #include "../core/checkpoint_manager.h"
+#include "../core/recovery_manager.h"
 
 #include <memory>
 #include <map>
@@ -52,7 +53,7 @@ private:
     std::shared_ptr<GroupCommitManager> group_commit_manager_;
 
     std::map<SessionId, std::shared_ptr<TransactionManager>> txn_managers_;
-    std::mutex txn_managers_mutex_;
+    mutable std::mutex txn_managers_mutex_;
 
     SessionId next_session_id_ = 1;
 
@@ -62,11 +63,11 @@ private:
 
     bool hasActiveTransactions() const;
 
+public:
     bool handleCheckpoint();
 
     std::shared_ptr<CheckpointManager> checkpoint_manager_;
 
-public:
     std::shared_ptr<WALManager> getWALManager() const { return wal_manager_; }
     std::shared_ptr<GroupCommitManager> getGroupCommitManager() const { return group_commit_manager_; }
     void initAfterConstruction();

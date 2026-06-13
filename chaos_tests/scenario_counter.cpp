@@ -8,7 +8,7 @@ static const std::string KEY = "counter";
 
 // ---------------- worker ----------------
 
-void worker(int id, int ops)
+static void worker(int id, int ops)
 {
     Client client("127.0.0.1", 7000);
 

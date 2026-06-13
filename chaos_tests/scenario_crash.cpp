@@ -24,7 +24,7 @@ static ReferenceModel reference;
 
 // ---------------- WORKER ----------------
 
-void worker(int id, std::atomic<bool> &running)
+static void worker(int id, std::atomic<bool> &running)
 {
     Client client("127.0.0.1", 7000);
 

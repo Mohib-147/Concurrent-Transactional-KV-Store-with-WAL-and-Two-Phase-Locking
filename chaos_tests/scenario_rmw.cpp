@@ -18,7 +18,7 @@ static std::atomic<uint64_t> commit_counter{0};
 
 // ---------------- worker ----------------
 
-void worker(int id)
+static void worker(int id)
 {
     Client client("127.0.0.1", 7000);
 

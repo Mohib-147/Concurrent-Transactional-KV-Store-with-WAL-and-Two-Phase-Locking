@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/test_concurrent_basic.dir/tests/test_concurrent_basic.cpp.o"
   "CMakeFiles/test_concurrent_basic.dir/tests/test_concurrent_basic.cpp.o.d"
-  "test_concurrent_basic"
-  "test_concurrent_basic.pdb"
+  "bin/test_concurrent_basic"
+  "bin/test_concurrent_basic.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

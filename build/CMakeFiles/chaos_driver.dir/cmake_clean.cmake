@@ -17,8 +17,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/chaos_driver.dir/chaos_tests/scenario_reader_writer.cpp.o.d"
   "CMakeFiles/chaos_driver.dir/chaos_tests/scenario_rmw.cpp.o"
   "CMakeFiles/chaos_driver.dir/chaos_tests/scenario_rmw.cpp.o.d"
-  "chaos_driver"
-  "chaos_driver.pdb"
+  "bin/chaos_driver"
+  "bin/chaos_driver.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

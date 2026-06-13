@@ -24,7 +24,7 @@ static std::mutex ref_mutex;
 
 // ---------------- WORKER ----------------
 
-void worker(int id, std::atomic<bool> &running)
+static void worker(int id, std::atomic<bool> &running)
 {
     Client client("127.0.0.1", 7000);
 
@@ -178,4 +178,9 @@ bool runScenarioDeadlockStorm()
         std::cout << "[scenario 6] FAILED\n";
 
     return ok;
+}
+
+bool runScenarioDeadlock()
+{
+    return runScenarioDeadlockStorm();
 }

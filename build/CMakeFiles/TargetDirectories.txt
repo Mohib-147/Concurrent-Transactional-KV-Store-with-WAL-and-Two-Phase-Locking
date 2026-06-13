@@ -5,5 +5,6 @@
 /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles/test_lock_manager.dir
 /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles/test_transaction_manager.dir
 /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles/test_concurrent_basic.dir
+/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles/test.dir
 /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles/edit_cache.dir
 /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/CMakeFiles/rebuild_cache.dir

@@ -36,3 +36,5 @@ private:
 
     bool request(const std::string &cmd, std::string *response);
 };
+
+#endif
