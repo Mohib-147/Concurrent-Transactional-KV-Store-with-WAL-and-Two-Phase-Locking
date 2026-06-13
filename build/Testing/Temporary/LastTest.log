@@ -1,0 +1,49 @@
+Start testing: Jun 13 21:47 PKT
+----------------------------------------------------------
+1/3 Testing: LockManager
+1/3 Test: LockManager
+Command: "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/bin/test_lock_manager"
+Directory: /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build
+"LockManager" start time: Jun 13 21:47 PKT
+Output:
+----------------------------------------------------------
+test_lock_manager: all assertions passed
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"LockManager" end time: Jun 13 21:47 PKT
+"LockManager" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/3 Testing: TransactionManager
+2/3 Test: TransactionManager
+Command: "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/bin/test_transaction_manager"
+Directory: /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build
+"TransactionManager" start time: Jun 13 21:47 PKT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TransactionManager" end time: Jun 13 21:47 PKT
+"TransactionManager" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/3 Testing: ConcurrentBasic
+3/3 Test: ConcurrentBasic
+Command: "/home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build/bin/test_concurrent_basic"
+Directory: /home/mohib/Concurrent-Transactional-KV-Store-with-WAL-and-Two-Phase-Locking/build
+"ConcurrentBasic" start time: Jun 13 21:47 PKT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"ConcurrentBasic" end time: Jun 13 21:47 PKT
+"ConcurrentBasic" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jun 13 21:47 PKT

@@ -2,6 +2,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <netdb.h>
 #include <unistd.h>
 #include <cstring>
 #include <iostream>
@@ -19,25 +20,43 @@ Client::~Client()
 
 bool Client::connect()
 {
-    socket_ = socket(AF_INET, SOCK_STREAM, 0);
+    socket_ = -1;
+
+    addrinfo hints{};
+    hints.ai_family = AF_UNSPEC;
+    hints.ai_socktype = SOCK_STREAM;
+
+    addrinfo *result = nullptr;
+    const std::string port_str = std::to_string(port_);
+
+    int rc = getaddrinfo(host_.c_str(), port_str.c_str(), &hints, &result);
+    if (rc != 0)
+    {
+        std::cerr << "ERROR: Failed to resolve host '" << host_ << "': "
+                  << gai_strerror(rc) << std::endl;
+        return false;
+    }
+
+    for (addrinfo *rp = result; rp != nullptr; rp = rp->ai_next)
+    {
+        int sock = socket(rp->ai_family, rp->ai_socktype, rp->ai_protocol);
+        if (sock < 0)
+        {
+            continue;
+        }
+
+        if (::connect(sock, rp->ai_addr, rp->ai_addrlen) == 0)
+        {
+            socket_ = sock;
+            break;
+        }
+
+        ::close(sock);
+    }
+
+    freeaddrinfo(result);
+
     if (socket_ < 0)
-    {
-        std::cerr << "ERROR: Failed to create socket" << std::endl;
-        return false;
-    }
-
-    sockaddr_in server_addr;
-    std::memset(&server_addr, 0, sizeof(server_addr));
-    server_addr.sin_family = AF_INET;
-    server_addr.sin_port = htons(port_);
-
-    if (inet_pton(AF_INET, host_.c_str(), &server_addr.sin_addr) <= 0)
-    {
-        std::cerr << "ERROR: Invalid address" << std::endl;
-        return false;
-    }
-
-    if (::connect(socket_, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0)
     {
         std::cerr << "ERROR: Failed to connect to " << host_ << ":" << port_ << std::endl;
         return false;
